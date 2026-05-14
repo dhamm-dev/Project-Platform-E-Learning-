@@ -30,7 +30,7 @@ function initDbIfEmpty() {
     return;
   }
   if (typeof DEFAULT_APP_DATA === "undefined") {
-    writeRawDb({ users: [], categories: [], courses: [], modules: [] });
+    writeRawDb({ users: [], categories: [], courses: [], modules: [], enrollments: [] });
     return;
   }
   writeRawDb(cloneValue(DEFAULT_APP_DATA));
@@ -104,6 +104,11 @@ function createRecord(collectionName, record) {
   return cloneValue(row);
 }
 
+/** Alias CREATE untuk konsistensi pemanggilan (mis. insert('enrollments', payload)). */
+function insert(collectionName, record) {
+  return createRecord(collectionName, record);
+}
+
 function updateRecord(collectionName, id, patch) {
   initDbIfEmpty();
   const db = readRawDb();
@@ -155,7 +160,7 @@ function deleteRecord(collectionName, id) {
 
 function resetDbToSeed() {
   if (typeof DEFAULT_APP_DATA === "undefined") {
-    writeRawDb({ users: [], categories: [], courses: [], modules: [] });
+    writeRawDb({ users: [], categories: [], courses: [], modules: [], enrollments: [] });
     return;
   }
   writeRawDb(cloneValue(DEFAULT_APP_DATA));

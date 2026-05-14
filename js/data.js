@@ -1,6 +1,6 @@
 /**
  * Seed data awal platform (hanya baca; persistensi ada di db.js + localStorage).
- * Koleksi: users, categories, courses, modules.
+ * Koleksi: users, categories, courses, modules, enrollments.
  */
 var DEFAULT_APP_DATA = {
   categories: [
@@ -146,4 +146,5 @@ var DEFAULT_APP_DATA = {
       durationLabel: "20:00",
     },
   ],
+  enrollments: [],
 };

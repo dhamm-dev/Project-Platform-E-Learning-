@@ -296,6 +296,12 @@ function initStudentWishlist() {
 }
 
 function initStudentDashboardCourses() {
+  if (typeof renderDashboard === "function") {
+    const myCourses = document.getElementById("my-courses-container");
+    if (myCourses) {
+      renderDashboard(getActiveStudentId());
+    }
+  }
   const el = document.getElementById("student-continue-grid");
   if (!el) {
     return;

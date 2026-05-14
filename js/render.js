@@ -1,5 +1,42 @@
 const COMPONENT_BASE = "../../components/";
 
+/** ID siswa aktif (demo): query ?studentId= atau default akun Rina Kusuma di seed. */
+function getActiveStudentId() {
+  const params = new URLSearchParams(window.location.search);
+  const raw = params.get("studentId");
+  if (raw !== null && raw !== "") {
+    const n = Number(raw);
+    if (!Number.isNaN(n)) {
+      return n;
+    }
+  }
+  return 4;
+}
+
+/**
+ * Mencatat pembelian ke localStorage (insert enrollments), lalu notifikasi.
+ * Loop pencarian duplikat memakai while dan i += 1 (SKILL.md).
+ */
+function beliKelas(courseId, studentId) {
+  if (typeof insert !== "function" || typeof getAll !== "function") {
+    return;
+  }
+  const cid = Number(courseId);
+  const sid = Number(studentId);
+  const allEn = getAll("enrollments");
+  let i = 0;
+  while (i < allEn.length) {
+    const row = allEn[i];
+    if (Number(row.courseId) === cid && Number(row.studentId) === sid) {
+      alert("Anda sudah terdaftar di kelas ini.");
+      return;
+    }
+    i += 1;
+  }
+  insert("enrollments", { courseId: cid, studentId: sid, status: "paid" });
+  alert("Kelas berhasil dibeli!");
+}
+
 async function loadHtmlFragment(url) {
   const response = await fetch(url);
   if (!response.ok) {
@@ -60,9 +97,14 @@ function renderCatalog() {
   }
   const rows = getAll("courses");
   const cards = [];
+  const sid = getActiveStudentId();
   let i = 0;
   while (i < rows.length) {
     const row = rows[i];
+    if (!row || row.status !== "published") {
+      i += 1;
+      continue;
+    }
     const idNum = Number(row.id);
     const priceNum = Number(row.price);
     const titleStr = typeof row.title === "string" ? row.title : "";
@@ -79,6 +121,9 @@ function renderCatalog() {
       price: priceNum,
       badge: badgeStr,
       href: hrefStr,
+      courseId: idNum,
+      studentId: sid,
+      showBuy: true,
     });
     i += 1;
   }
@@ -95,27 +140,115 @@ function renderCourseCards(containerId, courses) {
   while (i < courses.length) {
     const item = courses[i];
     const href = typeof item.href === "string" ? item.href : "";
-    const wrapStart = href ? '<a class="course-card-wrap" href="' + href + '">' : "";
-    const wrapEnd = href ? "</a>" : "";
-    htmlString +=
-      wrapStart +
-      '<article class="card course-card-mini">' +
-      '<span class="badge">' +
-      item.badge +
-      "</span>" +
-      "<h3>" +
-      item.title +
-      "</h3>" +
-      '<p class="course-meta">' +
-      item.meta +
-      " · " +
-      formatRupiah(item.price) +
-      "</p>" +
-      "</article>" +
-      wrapEnd;
+    if (item.showBuy === true) {
+      const courseIdForBtn = Number(item.courseId);
+      let studentIdForBtn = getActiveStudentId();
+      if (item.studentId !== undefined && item.studentId !== null) {
+        studentIdForBtn = Number(item.studentId);
+      }
+      htmlString +=
+        '<article class="card course-card-mini">' +
+        '<span class="badge">' +
+        item.badge +
+        "</span>" +
+        "<h3>" +
+        item.title +
+        "</h3>" +
+        '<p class="course-meta">' +
+        item.meta +
+        " · " +
+        formatRupiah(item.price) +
+        "</p>" +
+        '<div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.85rem;align-items:center">' +
+        (href
+          ? '<a class="btn btn-secondary" style="text-decoration:none;display:inline-block" href="' +
+            href +
+            '">Detail</a>'
+          : "") +
+        '<button type="button" class="btn btn-primary" onclick="beliKelas(' +
+        String(courseIdForBtn) +
+        "," +
+        String(studentIdForBtn) +
+        ')">Beli</button>' +
+        "</div>" +
+        "</article>";
+    } else {
+      const wrapStart = href ? '<a class="course-card-wrap" href="' + href + '">' : "";
+      const wrapEnd = href ? "</a>" : "";
+      htmlString +=
+        wrapStart +
+        '<article class="card course-card-mini">' +
+        '<span class="badge">' +
+        item.badge +
+        "</span>" +
+        "<h3>" +
+        item.title +
+        "</h3>" +
+        '<p class="course-meta">' +
+        item.meta +
+        " · " +
+        formatRupiah(item.price) +
+        "</p>" +
+        "</article>" +
+        wrapEnd;
+    }
     i += 1;
   }
   container.innerHTML = htmlString;
+}
+
+/**
+ * Dashboard siswa: gabungkan enrollments + courses dengan loop manual, render ke #my-courses-container.
+ */
+function renderDashboard(studentId) {
+  if (typeof getAll !== "function") {
+    return;
+  }
+  const container = document.getElementById("my-courses-container");
+  if (!container) {
+    return;
+  }
+  const enrollments = getAll("enrollments");
+  const courses = getAll("courses");
+  const sid = Number(studentId);
+  const cards = [];
+  let i = 0;
+  while (i < enrollments.length) {
+    const en = enrollments[i];
+    if (Number(en.studentId) === sid && en.status === "paid") {
+      const wantedCourseId = Number(en.courseId);
+      let j = 0;
+      while (j < courses.length) {
+        const c = courses[j];
+        if (Number(c.id) === wantedCourseId) {
+          const titleStr = typeof c.title === "string" ? c.title : "";
+          const badgeStr = typeof c.badge === "string" ? c.badge : "";
+          let metaStr = "Kelas";
+          if (typeof c.moduleMeta === "string" && c.moduleMeta.length > 0) {
+            metaStr = c.moduleMeta;
+          }
+          const idForQuery = encodeURIComponent(String(Number(c.id)));
+          const hrefStr = "learning-room.html?courseId=" + idForQuery;
+          cards.push({
+            title: titleStr,
+            meta: metaStr,
+            price: Number(c.price),
+            badge: badgeStr,
+            href: hrefStr,
+          });
+          break;
+        }
+        j += 1;
+      }
+    }
+    i += 1;
+  }
+  if (cards.length === 0) {
+    container.innerHTML =
+      '<p class="muted" style="margin:0">Belum ada kelas yang dibeli. <a href="catalog.html">Jelajahi katalog</a>.</p>';
+    return;
+  }
+  renderCourseCards("my-courses-container", cards);
 }
 
 function renderFaqList(containerId, items) {
