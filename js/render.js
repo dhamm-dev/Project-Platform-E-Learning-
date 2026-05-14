@@ -28,6 +28,12 @@ async function initPublicShell() {
   await injectIntoSelector("#site-footer", COMPONENT_BASE + "footer.html");
 }
 
+async function initStudentShell() {
+  await injectIntoSelector("#site-navbar", COMPONENT_BASE + "navbar-student.html");
+  await injectIntoSelector("#student-sidebar", COMPONENT_BASE + "sidebar-student.html");
+  await injectIntoSelector("#site-footer", COMPONENT_BASE + "footer-student.html");
+}
+
 function renderCourseCards(containerId, courses) {
   const container = document.getElementById(containerId);
   if (!container || !Array.isArray(courses)) {
@@ -37,7 +43,11 @@ function renderCourseCards(containerId, courses) {
   let i = 0;
   while (i < courses.length) {
     const item = courses[i];
+    const href = typeof item.href === "string" ? item.href : "";
+    const wrapStart = href ? '<a class="course-card-wrap" href="' + href + '">' : "";
+    const wrapEnd = href ? "</a>" : "";
     htmlString +=
+      wrapStart +
       '<article class="card course-card-mini">' +
       '<span class="badge">' +
       item.badge +
@@ -50,7 +60,8 @@ function renderCourseCards(containerId, courses) {
       " · " +
       formatRupiah(item.price) +
       "</p>" +
-      "</article>";
+      "</article>" +
+      wrapEnd;
     i += 1;
   }
   container.innerHTML = htmlString;
@@ -90,6 +101,60 @@ function renderFaqList(containerId, items) {
       "</p>" +
       "</div>" +
       "</div>";
+    i += 1;
+  }
+  container.innerHTML = htmlString;
+}
+
+function renderNotificationList(containerId, items) {
+  const container = document.getElementById(containerId);
+  if (!container || !Array.isArray(items)) {
+    return;
+  }
+  let htmlString = "";
+  let i = 0;
+  while (i < items.length) {
+    const item = items[i];
+    const unreadClass = item.unread ? "notif-item is-unread" : "notif-item";
+    htmlString +=
+      '<article class="' +
+      unreadClass +
+      '">' +
+      '<div><p style="margin:0 0 0.35rem;font-weight:600;color:var(--color-text-dark)">' +
+      item.title +
+      "</p>" +
+      '<p class="muted" style="margin:0">' +
+      item.body +
+      "</p>" +
+      '<p class="thread-meta" style="margin:0.5rem 0 0">' +
+      item.time +
+      "</p></div></article>";
+    i += 1;
+  }
+  container.innerHTML = htmlString;
+}
+
+function renderTransactionRows(containerId, rows) {
+  const container = document.getElementById(containerId);
+  if (!container || !Array.isArray(rows)) {
+    return;
+  }
+  let htmlString = "";
+  let i = 0;
+  while (i < rows.length) {
+    const row = rows[i];
+    htmlString +=
+      "<tr><td>" +
+      row.id +
+      "</td><td>" +
+      row.course +
+      "</td><td>" +
+      formatRupiah(row.amount) +
+      "</td><td>" +
+      row.status +
+      "</td><td>" +
+      row.date +
+      "</td></tr>";
     i += 1;
   }
   container.innerHTML = htmlString;

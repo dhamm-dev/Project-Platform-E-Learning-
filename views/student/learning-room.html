@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ruang Belajar — E-Learn</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="student">
+    <div id="site-navbar"></div>
+    <main class="learning-room">
+      <p class="muted" style="margin: 0 0 0.75rem"><a href="dashboard.html">Dashboard</a> / Dasar Pemrograman Web</p>
+      <div class="learning-room-grid">
+        <div>
+          <div class="video-shell" role="img" aria-label="Cuplikan pemutar video">
+            <span>Pemutar video (placeholder)</span>
+          </div>
+          <article class="card" style="padding: 1.25rem; margin-top: 1rem">
+            <h1 style="font-size: 1.15rem; margin-bottom: 0.35rem">Modul 4 · CSS Layout</h1>
+            <p class="muted" style="margin: 0 0 1rem">Ringkasan: grid, flexbox, dan pola responsif dasar.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem">
+              <a class="btn btn-secondary" href="#">Unduh materi PDF</a>
+              <a class="btn btn-primary" href="quiz.html">Kerjakan kuis modul</a>
+            </div>
+          </article>
+        </div>
+        <aside class="card" style="padding: 1rem 1.15rem">
+          <h2 class="section-heading" style="font-size: 1rem; margin-bottom: 0.75rem">Daftar modul</h2>
+          <ul class="module-list">
+            <li><a href="#">1. Pengenalan Web <span class="muted">✓</span></a></li>
+            <li><a href="#">2. HTML Semantik <span class="muted">✓</span></a></li>
+            <li><a href="#">3. CSS Dasar <span class="muted">✓</span></a></li>
+            <li><a href="learning-room.html">4. CSS Layout <span class="muted">▶</span></a></li>
+            <li><a href="#">5. JavaScript Dasar <span class="muted">Terkunci</span></a></li>
+          </ul>
+          <hr style="border: none; border-top: 1px solid var(--color-border); margin: 1rem 0" />
+          <a class="btn btn-secondary btn-block" href="discussion.html">Diskusi kelas</a>
+        </aside>
+      </div>
+    </main>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

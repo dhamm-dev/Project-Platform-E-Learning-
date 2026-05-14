@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kuis Modul — E-Learn</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="student">
+    <div id="site-navbar"></div>
+    <div class="student-layout">
+      <aside id="student-sidebar"></aside>
+      <main class="student-main">
+        <p class="muted" style="margin-bottom: 0.5rem"><a href="learning-room.html">Ruang belajar</a> / Kuis</p>
+        <h1 class="page-title">Kuis modul: CSS Layout</h1>
+        <p class="muted" style="margin-top: -1rem; margin-bottom: 1.5rem">Jawaban disimulasikan di front-end; kirim untuk melihat halaman hasil.</p>
+        <form id="form-quiz-demo" class="card" style="padding: 1.35rem">
+          <fieldset style="border: none; margin: 0 0 1.5rem; padding: 0">
+            <legend style="font-weight: 700; color: var(--color-text-dark); margin-bottom: 0.75rem">1. Properti flex untuk meratakan sumbu utama?</legend>
+            <label class="quiz-option"><input type="radio" name="q1" value="a" /> <span>justify-content</span></label>
+            <label class="quiz-option"><input type="radio" name="q1" value="b" /> <span>align-items</span></label>
+            <label class="quiz-option"><input type="radio" name="q1" value="c" /> <span>flex-flow</span></label>
+          </fieldset>
+          <fieldset style="border: none; margin: 0 0 1.5rem; padding: 0">
+            <legend style="font-weight: 700; color: var(--color-text-dark); margin-bottom: 0.75rem">2. Grid template area berguna untuk?</legend>
+            <label class="quiz-option"><input type="radio" name="q2" value="a" /> <span>Menata sel visual berbasis nama area</span></label>
+            <label class="quiz-option"><input type="radio" name="q2" value="b" /> <span>Mengganti warna font</span></label>
+          </fieldset>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: space-between">
+            <a class="btn btn-secondary" href="learning-room.html">Kembali</a>
+            <button class="btn btn-primary" type="submit">Kirim jawaban</button>
+          </div>
+        </form>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

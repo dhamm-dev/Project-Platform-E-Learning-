@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout — E-Learn</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="student">
+    <div id="site-navbar"></div>
+    <div class="student-layout">
+      <aside id="student-sidebar"></aside>
+      <main class="student-main">
+        <h1 class="page-title">Checkout</h1>
+        <p class="muted" style="margin-top: -1rem; margin-bottom: 1.5rem">
+          Pilih metode pembayaran dan konfirmasi pembelian (alur front-end statis).
+        </p>
+        <div class="split-2">
+          <form class="card" style="padding: 1.35rem" action="invoice.html" method="get">
+            <h2 class="section-heading" style="font-size: 1.05rem">Metode pembayaran</h2>
+            <div class="form-group">
+              <label class="quiz-option">
+                <input type="radio" name="pay" value="va" checked />
+                <span>Transfer Virtual Account</span>
+              </label>
+              <label class="quiz-option">
+                <input type="radio" name="pay" value="ewallet" />
+                <span>E-wallet</span>
+              </label>
+              <label class="quiz-option">
+                <input type="radio" name="pay" value="card" />
+                <span>Kartu debit/kredit</span>
+              </label>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email-tx">Email konfirmasi</label>
+              <input class="form-control" id="email-tx" name="email" type="email" autocomplete="email" />
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">Bayar sekarang</button>
+            <p class="form-hint">Anda akan diarahkan ke halaman invoice setelah mengirim (demo).</p>
+          </form>
+          <aside class="card" style="padding: 1.35rem">
+            <h2 class="section-heading" style="font-size: 1.05rem">Ringkasan pesanan</h2>
+            <p style="display: flex; justify-content: space-between"><span>Dasar Pemrograman Web</span><span>Rp199.000</span></p>
+            <p style="display: flex; justify-content: space-between"><span>Desain UI untuk Pemula</span><span>Rp249.000</span></p>
+            <hr style="border: none; border-top: 1px solid var(--color-border); margin: 1rem 0" />
+            <p style="display: flex; justify-content: space-between; font-weight: 700; color: var(--color-text-dark)">
+              <span>Total</span><span>Rp448.000</span>
+            </p>
+            <p class="muted" style="margin-top: 1rem; font-size: 0.85rem"><a href="cart.html">Ubah keranjang</a></p>
+          </aside>
+        </div>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

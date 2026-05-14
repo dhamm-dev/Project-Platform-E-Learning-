@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keranjang — E-Learn</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="student">
+    <div id="site-navbar"></div>
+    <div class="student-layout">
+      <aside id="student-sidebar"></aside>
+      <main class="student-main">
+        <h1 class="page-title">Keranjang pembelian</h1>
+        <p class="muted" style="margin-top: -1rem; margin-bottom: 1.25rem">Tinjau kelas sebelum checkout.</p>
+        <div class="table-wrap">
+          <table class="table-simple">
+            <thead>
+              <tr>
+                <th>Kelas</th>
+                <th>Harga</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Dasar Pemrograman Web</td>
+                <td>Rp199.000</td>
+                <td><a class="link-muted" href="catalog.html">Hapus</a></td>
+              </tr>
+              <tr>
+                <td>Desain UI untuk Pemula</td>
+                <td>Rp249.000</td>
+                <td><a class="link-muted" href="catalog.html">Hapus</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <article class="card" style="padding: 1.25rem; margin-top: 1.25rem; max-width: 360px; margin-left: auto">
+          <p style="margin: 0 0 0.5rem; display: flex; justify-content: space-between">
+            <span>Subtotal</span><strong>Rp448.000</strong>
+          </p>
+          <a class="btn btn-primary btn-block" href="checkout.html">Lanjut checkout</a>
+        </article>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

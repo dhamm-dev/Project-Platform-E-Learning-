@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Siswa — E-Learn</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="student">
+    <div id="site-navbar"></div>
+    <div class="student-layout">
+      <aside id="student-sidebar"></aside>
+      <main class="student-main">
+        <h1 class="page-title">Ringkasan belajar</h1>
+        <p class="muted" style="margin-top: -1rem; margin-bottom: 1.5rem">
+          Pantau progres kelas yang sedang diikuti dan lanjutkan dari titik terakhir.
+        </p>
+        <div class="stat-row">
+          <article class="card stat-card">
+            <h3>Kelas aktif</h3>
+            <p class="stat-value">3</p>
+          </article>
+          <article class="card stat-card">
+            <h3>Modul selesai (minggu ini)</h3>
+            <p class="stat-value">5</p>
+          </article>
+          <article class="card stat-card">
+            <h3>Kuis lulus</h3>
+            <p class="stat-value">2</p>
+          </article>
+        </div>
+        <section style="margin-bottom: 2rem">
+          <h2 class="section-heading" style="font-size: 1.15rem">Progres utama</h2>
+          <article class="card" style="padding: 1.25rem 1.35rem">
+            <div style="display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.65rem">
+              <div>
+                <h3 style="font-size: 1rem; margin: 0 0 0.25rem">Dasar Pemrograman Web</h3>
+                <p class="muted" style="margin: 0; font-size: 0.875rem">Modul 4 dari 12</p>
+              </div>
+              <a class="btn btn-primary" href="learning-room.html">Lanjut</a>
+            </div>
+            <div class="progress-track" aria-hidden="true">
+              <div class="progress-fill" style="width: 33%"></div>
+            </div>
+          </article>
+        </section>
+        <section>
+          <div class="student-toolbar">
+            <h2 class="section-heading" style="margin: 0; font-size: 1.15rem">Lanjutkan belajar</h2>
+            <a class="link-muted" href="catalog.html">Jelajahi katalog</a>
+          </div>
+          <div id="student-continue-grid" class="course-grid"></div>
+        </section>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ulasan Kelas — E-Learn</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="student">
+    <div id="site-navbar"></div>
+    <div class="student-layout">
+      <aside id="student-sidebar"></aside>
+      <main class="student-main">
+        <p class="muted" style="margin-bottom: 0.5rem"><a href="learning-room.html">Ruang belajar</a> / Ulasan</p>
+        <h1 class="page-title">Beri ulasan &amp; rating</h1>
+        <p class="muted" style="margin-top: -1rem; margin-bottom: 1.5rem">Dasar Pemrograman Web</p>
+        <form class="card" style="padding: 1.35rem; max-width: 560px" action="#" method="post">
+          <div class="form-group">
+            <label class="form-label" for="review-rating">Rating</label>
+            <select class="form-control" id="review-rating" name="rating">
+              <option value="5">5 — sangat memuaskan</option>
+              <option value="4">4 — baik</option>
+              <option value="3">3 — cukup</option>
+              <option value="2">2 — kurang</option>
+              <option value="1">1 — perlu perbaikan</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="review-title">Judul ulasan</label>
+            <input class="form-control" id="review-title" name="title" type="text" placeholder="Ringkas pengalaman Anda" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="review-body">Detail</label>
+            <textarea class="form-control" id="review-body" name="body" rows="5" placeholder="Apa yang paling membantu? Saran untuk instruktur?"></textarea>
+          </div>
+          <button class="btn btn-primary" type="button">Kirim ulasan (demo)</button>
+        </form>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

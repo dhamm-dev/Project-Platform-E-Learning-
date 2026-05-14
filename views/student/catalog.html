@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Katalog Kelas — E-Learn</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="student">
+    <div id="site-navbar"></div>
+    <div class="student-layout">
+      <aside id="student-sidebar"></aside>
+      <main class="student-main">
+        <h1 class="page-title">Katalog kelas</h1>
+        <div class="student-toolbar">
+          <p class="muted" style="margin: 0">Cari kelas baru, bandingkan silabus, lalu tambahkan ke keranjang atau wishlist.</p>
+          <a class="btn btn-secondary" href="wishlist.html">Wishlist</a>
+        </div>
+        <form class="card" style="padding: 1rem 1.15rem; margin-bottom: 1.5rem" action="#" method="get">
+          <div class="split-2" style="align-items: end">
+            <div class="form-group" style="margin-bottom: 0">
+              <label class="form-label" for="q">Kata kunci</label>
+              <input class="form-control" id="q" name="q" type="search" placeholder="Mis. UI, produk, web…" />
+            </div>
+            <div class="form-group" style="margin-bottom: 0">
+              <label class="form-label" for="cat">Kategori</label>
+              <select class="form-control" id="cat" name="cat">
+                <option>Semua</option>
+                <option>Teknologi</option>
+                <option>Desain</option>
+                <option>Bisnis</option>
+              </select>
+            </div>
+          </div>
+        </form>
+        <div id="student-catalog-grid" class="course-grid"></div>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

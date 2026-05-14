@@ -218,9 +218,142 @@ function wireAuthDemoForms() {
   }
 }
 
+function getDemoStudentCourses() {
+  return [
+    {
+      title: "Dasar Pemrograman Web",
+      meta: "12 modul",
+      price: 199000,
+      badge: "Populer",
+      href: "course-detail.html",
+    },
+    {
+      title: "Desain UI untuk Pemula",
+      meta: "8 modul",
+      price: 249000,
+      badge: "Baru",
+      href: "course-detail.html",
+    },
+    {
+      title: "Manajemen Produk Digital",
+      meta: "10 modul",
+      price: 299000,
+      badge: "Unggulan",
+      href: "course-detail.html",
+    },
+  ];
+}
+
+function initStudentCatalog() {
+  const el = document.getElementById("student-catalog-grid");
+  if (!el) {
+    return;
+  }
+  renderCourseCards("student-catalog-grid", getDemoStudentCourses());
+}
+
+function initStudentWishlist() {
+  const el = document.getElementById("student-wishlist-grid");
+  if (!el) {
+    return;
+  }
+  const all = getDemoStudentCourses();
+  const subset = [all[0], all[2]];
+  renderCourseCards("student-wishlist-grid", subset);
+}
+
+function initStudentDashboardCourses() {
+  const el = document.getElementById("student-continue-grid");
+  if (!el) {
+    return;
+  }
+  const all = getDemoStudentCourses();
+  const subset = [all[0], all[1]];
+  let i = 0;
+  while (i < subset.length) {
+    subset[i].href = "learning-room.html";
+    i += 1;
+  }
+  renderCourseCards("student-continue-grid", subset);
+}
+
+function initStudentNotifications() {
+  const el = document.getElementById("student-notif-list");
+  if (!el) {
+    return;
+  }
+  const items = [
+    {
+      title: "Pembayaran dikonfirmasi",
+      body: "Akses kelas Manajemen Produk Digital sudah aktif.",
+      time: "2 jam lalu",
+      unread: true,
+    },
+    {
+      title: "Jadwal kuis diperbarui",
+      body: "Instruktur menambah jendela pengumpulan untuk modul 4.",
+      time: "Kemarin",
+      unread: true,
+    },
+    {
+      title: "Balasan diskusi",
+      body: "Mentor membalas pertanyaan Anda di ruang diskusi.",
+      time: "3 hari lalu",
+      unread: false,
+    },
+  ];
+  renderNotificationList("student-notif-list", items);
+}
+
+function initStudentTransactions() {
+  const el = document.getElementById("student-tx-tbody");
+  if (!el) {
+    return;
+  }
+  const rows = [
+    {
+      id: "INV-2026-0142",
+      course: "Desain UI untuk Pemula",
+      amount: 249000,
+      status: "Lunas",
+      date: "12 Mei 2026",
+    },
+    {
+      id: "INV-2026-0098",
+      course: "Dasar Pemrograman Web",
+      amount: 199000,
+      status: "Lunas",
+      date: "2 Mei 2026",
+    },
+  ];
+  renderTransactionRows("student-tx-tbody", rows);
+}
+
+function wireQuizDemoForm() {
+  const form = document.getElementById("form-quiz-demo");
+  if (!form) {
+    return;
+  }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    window.location.href = "quiz-result.html";
+  });
+}
+
 document.addEventListener("DOMContentLoaded", async function () {
-  await initPublicShell();
+  const shell = document.body.getAttribute("data-shell") || "public";
+  if (shell === "student") {
+    await initStudentShell();
+  } else {
+    await initPublicShell();
+  }
   initLandingDemoCourses();
   initFaqPage();
+  initStudentCatalog();
+  initStudentWishlist();
+  initStudentDashboardCourses();
+  initStudentNotifications();
+  initStudentTransactions();
   wireAuthDemoForms();
+  wireQuizDemoForm();
 });

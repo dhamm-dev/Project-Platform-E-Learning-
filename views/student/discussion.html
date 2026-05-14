@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diskusi Kelas — E-Learn</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="student">
+    <div id="site-navbar"></div>
+    <div class="student-layout">
+      <aside id="student-sidebar"></aside>
+      <main class="student-main">
+        <p class="muted" style="margin-bottom: 0.5rem"><a href="learning-room.html">Ruang belajar</a> / Diskusi</p>
+        <h1 class="page-title">Ruang diskusi — Dasar Pemrograman Web</h1>
+        <p class="muted" style="margin-top: -1rem; margin-bottom: 1.25rem">Thread contoh; integrasi real-time mengikuti kebijakan backend.</p>
+        <article class="card discussion-thread">
+          <h3>Apakah grid lebih baik dari flex untuk layout penuh halaman?</h3>
+          <p class="thread-meta">Anda · 1 hari lalu</p>
+          <p style="margin: 0.5rem 0 0">Saya bingung memilih pola untuk landing page sederhana.</p>
+        </article>
+        <article class="card discussion-thread">
+          <h3>Re: pola landing page</h3>
+          <p class="thread-meta">Rina Dev (instruktur) · 20 jam lalu</p>
+          <p style="margin: 0.5rem 0 0">Gunakan grid untuk kerangka besar halaman, lalu flex untuk komponen kecil di dalam kartu.</p>
+        </article>
+        <section class="card" style="padding: 1.25rem; margin-top: 1.25rem">
+          <h2 class="section-heading" style="font-size: 1.05rem">Tulis pertanyaan</h2>
+          <form action="#" method="post">
+            <div class="form-group">
+              <label class="form-label" for="disc-title">Judul</label>
+              <input class="form-control" id="disc-title" name="title" type="text" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="disc-body">Detail</label>
+              <textarea class="form-control" id="disc-body" name="body" rows="4"></textarea>
+            </div>
+            <button class="btn btn-primary" type="button">Kirim (demo)</button>
+          </form>
+        </section>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>
