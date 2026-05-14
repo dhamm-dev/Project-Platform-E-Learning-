@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daftar Siswa — E-Learn</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body>
+    <div id="site-navbar"></div>
+
+    <main class="auth-page">
+      <div class="auth-card-wrap">
+        <div class="card auth-card">
+          <h1>Registrasi siswa</h1>
+          <p class="auth-sub">Buat akun untuk mengikuti kelas dan mendapatkan sertifikat.</p>
+          <form id="form-register-student" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="reg-s-name">Nama lengkap</label>
+              <input class="form-control" type="text" id="reg-s-name" name="name" autocomplete="name" required />
+              <p class="form-error" role="alert"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-s-email">Email</label>
+              <input class="form-control" type="email" id="reg-s-email" name="email" autocomplete="email" required />
+              <p class="form-error" role="alert"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-s-password">Kata sandi</label>
+              <input
+                class="form-control"
+                type="password"
+                id="reg-s-password"
+                name="password"
+                autocomplete="new-password"
+                required
+              />
+              <p class="form-hint">Minimal 8 karakter.</p>
+              <p class="form-error" role="alert"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-s-password2">Konfirmasi kata sandi</label>
+              <input
+                class="form-control"
+                type="password"
+                id="reg-s-password2"
+                name="password2"
+                autocomplete="new-password"
+                required
+              />
+              <p class="form-error" role="alert"></p>
+            </div>
+            <div class="form-group">
+              <label style="display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.9rem; color: var(--color-text-body)">
+                <input type="checkbox" id="reg-s-agree" name="agree" required style="margin-top: 0.2rem" />
+                <span>Saya menyetujui <a href="terms.html">Syarat &amp; Ketentuan</a>.</span>
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Buat akun siswa</button>
+          </form>
+          <div class="auth-alt">
+            Ingin mengajar?
+            <a href="register-instructor.html">Daftar instruktur</a>
+            · Sudah punya akun?
+            <a href="login.html">Masuk</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

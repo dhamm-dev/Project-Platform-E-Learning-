@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Masuk — E-Learn</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body>
+    <div id="site-navbar"></div>
+
+    <main class="auth-page">
+      <div class="auth-card-wrap">
+        <div class="card auth-card">
+          <h1>Masuk</h1>
+          <p class="auth-sub">Gunakan akun siswa, instruktur, atau admin (universal).</p>
+          <form id="form-login" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="login-email">Email</label>
+              <input class="form-control" type="email" id="login-email" name="email" autocomplete="username" required />
+              <p class="form-error" role="alert"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="login-password">Kata sandi</label>
+              <input
+                class="form-control"
+                type="password"
+                id="login-password"
+                name="password"
+                autocomplete="current-password"
+                required
+              />
+              <p class="form-error" role="alert"></p>
+            </div>
+            <div class="form-group text-center">
+              <a class="link-muted" href="forgot-password.html">Lupa kata sandi?</a>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+          </form>
+          <div class="auth-alt">
+            Belum punya akun?
+            <a href="register-student.html">Daftar siswa</a>
+            ·
+            <a href="register-instructor.html">Daftar instruktur</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>
