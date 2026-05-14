@@ -40,6 +40,12 @@ async function initInstructorShell() {
   await injectIntoSelector("#site-footer", COMPONENT_BASE + "footer-instructor.html");
 }
 
+async function initAdminShell() {
+  await injectIntoSelector("#site-navbar", COMPONENT_BASE + "navbar-admin.html");
+  await injectIntoSelector("#admin-sidebar", COMPONENT_BASE + "sidebar-admin.html");
+  await injectIntoSelector("#site-footer", COMPONENT_BASE + "footer-admin.html");
+}
+
 function renderCourseCards(containerId, courses) {
   const container = document.getElementById(containerId);
   if (!container || !Array.isArray(courses)) {
@@ -380,6 +386,250 @@ function renderInstructorReviewCards(containerId, items) {
       item.comment +
       "</p>" +
       "</article>";
+    i += 1;
+  }
+  container.innerHTML = htmlString;
+}
+
+function renderAdminStudentRows(containerId, rows) {
+  const container = document.getElementById(containerId);
+  if (!container || !Array.isArray(rows)) {
+    return;
+  }
+  let htmlString = "";
+  let i = 0;
+  while (i < rows.length) {
+    const row = rows[i];
+    htmlString +=
+      "<tr><td>" +
+      row.name +
+      "</td><td>" +
+      row.email +
+      "</td><td>" +
+      row.status +
+      "</td><td>" +
+      row.joined +
+      "</td><td>" +
+      row.courses +
+      "</td></tr>";
+    i += 1;
+  }
+  container.innerHTML = htmlString;
+}
+
+function renderAdminInstructorRows(containerId, rows) {
+  const container = document.getElementById(containerId);
+  if (!container || !Array.isArray(rows)) {
+    return;
+  }
+  let htmlString = "";
+  let i = 0;
+  while (i < rows.length) {
+    const row = rows[i];
+    htmlString +=
+      "<tr><td>" +
+      row.name +
+      "</td><td>" +
+      row.email +
+      "</td><td>" +
+      row.status +
+      "</td><td>" +
+      row.published +
+      "</td><td>" +
+      row.students +
+      "</td></tr>";
+    i += 1;
+  }
+  container.innerHTML = htmlString;
+}
+
+function renderAdminPendingCourseRows(containerId, rows) {
+  const container = document.getElementById(containerId);
+  if (!container || !Array.isArray(rows)) {
+    return;
+  }
+  let htmlString = "";
+  let i = 0;
+  while (i < rows.length) {
+    const row = rows[i];
+    htmlString +=
+      "<tr><td>" +
+      row.title +
+      "</td><td>" +
+      row.instructor +
+      "</td><td>" +
+      row.submitted +
+      "</td><td>" +
+      row.modules +
+      '</td><td><div class="table-actions">' +
+      '<button type="button" class="btn btn-primary" style="padding:0.45rem 0.75rem;font-size:0.8125rem" data-admin-demo="setujui-kelas:' +
+      row.id +
+      '">Setujui</button>' +
+      '<button type="button" class="btn btn-secondary" style="padding:0.45rem 0.75rem;font-size:0.8125rem" data-admin-demo="tolak-kelas:' +
+      row.id +
+      '">Tolak</button>' +
+      "</div></td></tr>";
+    i += 1;
+  }
+  container.innerHTML = htmlString;
+}
+
+function renderAdminPaymentVerifyRows(containerId, rows) {
+  const container = document.getElementById(containerId);
+  if (!container || !Array.isArray(rows)) {
+    return;
+  }
+  let htmlString = "";
+  let i = 0;
+  while (i < rows.length) {
+    const row = rows[i];
+    htmlString +=
+      "<tr><td>" +
+      row.id +
+      "</td><td>" +
+      row.student +
+      "</td><td>" +
+      row.course +
+      "</td><td>" +
+      formatRupiah(row.amount) +
+      "</td><td>" +
+      row.channel +
+      "</td><td>" +
+      row.date +
+      "</td><td>" +
+      row.status +
+      '</td><td><div class="table-actions">' +
+      '<button type="button" class="btn btn-primary" style="padding:0.45rem 0.75rem;font-size:0.8125rem" data-admin-demo="verifikasi-bayar:' +
+      row.id +
+      '">Tandai valid</button>' +
+      '<button type="button" class="btn btn-secondary" style="padding:0.45rem 0.75rem;font-size:0.8125rem" data-admin-demo="tolak-bayar:' +
+      row.id +
+      '">Tolak</button>' +
+      "</div></td></tr>";
+    i += 1;
+  }
+  container.innerHTML = htmlString;
+}
+
+function renderAdminWithdrawalVerifyRows(containerId, rows) {
+  const container = document.getElementById(containerId);
+  if (!container || !Array.isArray(rows)) {
+    return;
+  }
+  let htmlString = "";
+  let i = 0;
+  while (i < rows.length) {
+    const row = rows[i];
+    htmlString +=
+      "<tr><td>" +
+      row.id +
+      "</td><td>" +
+      row.instructor +
+      "</td><td>" +
+      formatRupiah(row.amount) +
+      "</td><td>" +
+      row.bank +
+      "</td><td>" +
+      row.date +
+      "</td><td>" +
+      row.status +
+      '</td><td><div class="table-actions">' +
+      '<button type="button" class="btn btn-primary" style="padding:0.45rem 0.75rem;font-size:0.8125rem" data-admin-demo="setujui-wd:' +
+      row.id +
+      '">Setujui transfer</button>' +
+      '<button type="button" class="btn btn-secondary" style="padding:0.45rem 0.75rem;font-size:0.8125rem" data-admin-demo="tahan-wd:' +
+      row.id +
+      '">Tahan</button>' +
+      "</div></td></tr>";
+    i += 1;
+  }
+  container.innerHTML = htmlString;
+}
+
+function renderAdminCategoryRows(containerId, rows) {
+  const container = document.getElementById(containerId);
+  if (!container || !Array.isArray(rows)) {
+    return;
+  }
+  let htmlString = "";
+  let i = 0;
+  while (i < rows.length) {
+    const row = rows[i];
+    htmlString +=
+      "<tr><td>" +
+      row.name +
+      "</td><td>" +
+      row.slug +
+      "</td><td>" +
+      row.count +
+      "</td><td>" +
+      row.sort +
+      '</td><td><div class="table-actions">' +
+      '<button type="button" class="btn btn-secondary" style="padding:0.45rem 0.75rem;font-size:0.8125rem" data-admin-demo="edit-kategori:' +
+      row.slug +
+      '">Edit</button>' +
+      "</div></td></tr>";
+    i += 1;
+  }
+  container.innerHTML = htmlString;
+}
+
+function renderAdminModerationRows(containerId, rows) {
+  const container = document.getElementById(containerId);
+  if (!container || !Array.isArray(rows)) {
+    return;
+  }
+  let htmlString = "";
+  let i = 0;
+  while (i < rows.length) {
+    const row = rows[i];
+    htmlString +=
+      "<tr><td>" +
+      row.id +
+      "</td><td>" +
+      row.target +
+      "</td><td>" +
+      row.reporter +
+      "</td><td>" +
+      row.reason +
+      "</td><td>" +
+      row.date +
+      "</td><td>" +
+      row.status +
+      '</td><td><div class="table-actions">' +
+      '<button type="button" class="btn btn-secondary" style="padding:0.45rem 0.75rem;font-size:0.8125rem" data-admin-demo="sembunyi-ulasan:' +
+      row.id +
+      '">Sembunyikan</button>' +
+      '<button type="button" class="btn btn-primary" style="padding:0.45rem 0.75rem;font-size:0.8125rem" data-admin-demo="abaikan-laporan:' +
+      row.id +
+      '">Abaikan</button>' +
+      "</div></td></tr>";
+    i += 1;
+  }
+  container.innerHTML = htmlString;
+}
+
+function renderAdminAccountRows(containerId, rows) {
+  const container = document.getElementById(containerId);
+  if (!container || !Array.isArray(rows)) {
+    return;
+  }
+  let htmlString = "";
+  let i = 0;
+  while (i < rows.length) {
+    const row = rows[i];
+    htmlString +=
+      "<tr><td>" +
+      row.name +
+      "</td><td>" +
+      row.email +
+      "</td><td>" +
+      row.role +
+      "</td><td>" +
+      row.lastActive +
+      "</td><td>" +
+      row.status +
+      "</td></tr>";
     i += 1;
   }
   container.innerHTML = htmlString;

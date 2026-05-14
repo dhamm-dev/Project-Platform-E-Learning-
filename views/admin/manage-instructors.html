@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manajemen Instruktur — E-Learn Admin</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="admin">
+    <div id="site-navbar"></div>
+    <div class="admin-layout">
+      <aside id="admin-sidebar"></aside>
+      <main class="admin-main">
+        <h1 class="page-title">Manajemen data instruktur</h1>
+        <p class="muted" style="margin-top: -1rem; margin-bottom: 1.25rem">
+          Verifikasi identitas, penonaktifan akun, dan statistik publikasi kelas.
+        </p>
+        <div class="table-wrap">
+          <table class="table-simple">
+            <thead>
+              <tr>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Kelas terbit</th>
+                <th>Total siswa</th>
+              </tr>
+            </thead>
+            <tbody id="admin-instructors-tbody"></tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

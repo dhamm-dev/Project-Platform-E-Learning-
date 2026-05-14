@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Akun Admin — E-Learn Admin</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="admin">
+    <div id="site-navbar"></div>
+    <div class="admin-layout">
+      <aside id="admin-sidebar"></aside>
+      <main class="admin-main">
+        <h1 class="page-title">Manajemen akun admin sistem</h1>
+        <p class="muted" style="margin-top: -1rem; margin-bottom: 1.25rem">
+          Batasi akses super admin vs operator support.
+        </p>
+        <div class="admin-toolbar">
+          <h2 class="section-heading" style="margin: 0; font-size: 1.1rem">Admin terdaftar</h2>
+        </div>
+        <div class="table-wrap" style="margin-bottom: 1.5rem">
+          <table class="table-simple">
+            <thead>
+              <tr>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Peran</th>
+                <th>Terakhir aktif</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="admin-admins-tbody"></tbody>
+          </table>
+        </div>
+        <section class="card" style="padding: 1.5rem; max-width: 520px">
+          <h2 class="section-heading" style="font-size: 1.1rem; margin-top: 0">Undang admin baru</h2>
+          <form id="form-admin-invite">
+            <div class="form-group">
+              <label class="form-label" for="inv-email">Email</label>
+              <input class="form-control" id="inv-email" type="email" required />
+              <p class="form-error" aria-live="polite"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="inv-role">Peran</label>
+              <select class="form-control" id="inv-role">
+                <option value="support">Operator support</option>
+                <option value="finance">Finance</option>
+                <option value="super">Super admin</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Kirim undangan (demo)</button>
+          </form>
+        </section>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

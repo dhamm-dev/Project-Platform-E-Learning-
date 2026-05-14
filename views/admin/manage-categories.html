@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kategori Kelas — E-Learn Admin</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="admin">
+    <div id="site-navbar"></div>
+    <div class="admin-layout">
+      <aside id="admin-sidebar"></aside>
+      <main class="admin-main">
+        <h1 class="page-title">Manajemen kategori kelas</h1>
+        <p class="muted" style="margin-top: -1rem; margin-bottom: 1.25rem">
+          Slug URL dan urutan tampil di katalog siswa.
+        </p>
+        <div class="table-wrap" style="margin-bottom: 1.5rem">
+          <table class="table-simple">
+            <thead>
+              <tr>
+                <th>Nama</th>
+                <th>Slug</th>
+                <th>Jumlah kelas</th>
+                <th>Urutan</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="admin-cat-tbody"></tbody>
+          </table>
+        </div>
+        <section class="card" style="padding: 1.5rem; max-width: 520px">
+          <h2 class="section-heading" style="font-size: 1.1rem; margin-top: 0">Tambah kategori</h2>
+          <form id="form-admin-category">
+            <div class="form-group">
+              <label class="form-label" for="ac-name">Nama kategori</label>
+              <input class="form-control" id="ac-name" type="text" required />
+              <p class="form-error" aria-live="polite"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="ac-slug">Slug</label>
+              <input class="form-control" id="ac-slug" type="text" placeholder="mis. data-science" required />
+              <p class="form-error" aria-live="polite"></p>
+            </div>
+            <button type="submit" class="btn btn-primary">Simpan (demo)</button>
+          </form>
+        </section>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

@@ -658,12 +658,396 @@ function wireInstructorPublicProfile() {
   });
 }
 
+function isProbableHttpUrl(value) {
+  if (!isNonEmptyString(value)) {
+    return true;
+  }
+  const t = value.trim();
+  return t.indexOf("http://") === 0 || t.indexOf("https://") === 0;
+}
+
+function isValidAdminSlug(value) {
+  if (!isNonEmptyString(value)) {
+    return false;
+  }
+  return /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value.trim());
+}
+
+function wireAdminDemoActions() {
+  document.body.addEventListener("click", function (e) {
+    const btn = e.target.closest("[data-admin-demo]");
+    if (!btn) {
+      return;
+    }
+    if (document.body.getAttribute("data-shell") !== "admin") {
+      return;
+    }
+    e.preventDefault();
+    const v = btn.getAttribute("data-admin-demo") || "";
+    alert("Aksi admin (demo): " + v);
+  });
+}
+
+function initAdminDashboard() {
+  const el = document.getElementById("admin-activity-list");
+  if (!el) {
+    return;
+  }
+  const items = [
+    {
+      title: "Kelas baru diajukan",
+      body: "Workshop UI Mobile — menunggu moderasi konten.",
+      time: "32 menit lalu",
+      unread: true,
+    },
+    {
+      title: "Bukti transfer diunggah",
+      body: "INV-2026-0203 menunggu pencocokan mutasi.",
+      time: "2 jam lalu",
+      unread: true,
+    },
+    {
+      title: "Laporan ulasan",
+      body: "LP-881 — diduga spam pada kelas Manajemen Produk.",
+      time: "Kemarin",
+      unread: false,
+    },
+  ];
+  renderNotificationList("admin-activity-list", items);
+}
+
+function initAdminManageStudents() {
+  const el = document.getElementById("admin-students-tbody");
+  if (!el) {
+    return;
+  }
+  const rows = [
+    {
+      name: "Rina Kusuma",
+      email: "rina@email.demo",
+      status: "Aktif",
+      joined: "Jan 2026",
+      courses: "3",
+    },
+    {
+      name: "Budi Hartono",
+      email: "budi@email.demo",
+      status: "Aktif",
+      joined: "Mar 2026",
+      courses: "1",
+    },
+    {
+      name: "Tamu Uji",
+      email: "tamu@email.demo",
+      status: "Ditangguhkan",
+      joined: "Apr 2026",
+      courses: "0",
+    },
+  ];
+  renderAdminStudentRows("admin-students-tbody", rows);
+}
+
+function initAdminManageInstructors() {
+  const el = document.getElementById("admin-instructors-tbody");
+  if (!el) {
+    return;
+  }
+  const rows = [
+    {
+      name: "Dewi Lestari",
+      email: "dewi@mentor.demo",
+      status: "Terverifikasi",
+      published: "4",
+      students: "3.120",
+    },
+    {
+      name: "Andi Pratama",
+      email: "andi@mentor.demo",
+      status: "Terverifikasi",
+      published: "2",
+      students: "890",
+    },
+    {
+      name: "Calon Mentor X",
+      email: "calon@mentor.demo",
+      status: "Menunggu dokumen",
+      published: "0",
+      students: "0",
+    },
+  ];
+  renderAdminInstructorRows("admin-instructors-tbody", rows);
+}
+
+function initAdminApproveCourses() {
+  const el = document.getElementById("admin-approve-tbody");
+  if (!el) {
+    return;
+  }
+  const rows = [
+    {
+      id: "CRS-104",
+      title: "Workshop UI Mobile",
+      instructor: "Dewi Lestari",
+      submitted: "13 Mei 2026",
+      modules: "6",
+    },
+    {
+      id: "CRS-105",
+      title: "Python untuk Analisis Data",
+      instructor: "Andi Pratama",
+      submitted: "12 Mei 2026",
+      modules: "11",
+    },
+  ];
+  renderAdminPendingCourseRows("admin-approve-tbody", rows);
+}
+
+function initAdminVerifyPayments() {
+  const el = document.getElementById("admin-pay-tbody");
+  if (!el) {
+    return;
+  }
+  const rows = [
+    {
+      id: "INV-2026-0203",
+      student: "Maya Sari",
+      course: "Manajemen Produk Digital",
+      amount: 299000,
+      channel: "Transfer BCA",
+      date: "14 Mei 2026",
+      status: "Menunggu verifikasi",
+    },
+    {
+      id: "INV-2026-0198",
+      student: "Rina Kusuma",
+      course: "Desain UI untuk Pemula",
+      amount: 249000,
+      channel: "QRIS",
+      date: "13 Mei 2026",
+      status: "Menunggu verifikasi",
+    },
+  ];
+  renderAdminPaymentVerifyRows("admin-pay-tbody", rows);
+}
+
+function initAdminVerifyWithdrawals() {
+  const el = document.getElementById("admin-wd-tbody");
+  if (!el) {
+    return;
+  }
+  const rows = [
+    {
+      id: "WD-2026-0055",
+      instructor: "Dewi Lestari",
+      amount: 7200000,
+      bank: "Mandiri · ****8821",
+      date: "14 Mei 2026",
+      status: "Menunggu admin",
+    },
+    {
+      id: "WD-2026-0051",
+      instructor: "Andi Pratama",
+      amount: 2100000,
+      bank: "BCA · ****4410",
+      date: "13 Mei 2026",
+      status: "Menunggu admin",
+    },
+  ];
+  renderAdminWithdrawalVerifyRows("admin-wd-tbody", rows);
+}
+
+function initAdminCategories() {
+  const el = document.getElementById("admin-cat-tbody");
+  if (!el) {
+    return;
+  }
+  const rows = [
+    { name: "Pemrograman", slug: "pemrograman", count: "42", sort: "10" },
+    { name: "Desain & UI", slug: "desain-ui", count: "28", sort: "20" },
+    { name: "Bisnis & Karier", slug: "bisnis", count: "19", sort: "30" },
+  ];
+  renderAdminCategoryRows("admin-cat-tbody", rows);
+}
+
+function initAdminModeration() {
+  const el = document.getElementById("admin-mod-tbody");
+  if (!el) {
+    return;
+  }
+  const rows = [
+    {
+      id: "LP-881",
+      target: "Ulasan · Manajemen Produk Digital",
+      reporter: "anon@email.demo",
+      reason: "Spam / promosi",
+      date: "13 Mei 2026",
+      status: "Terbuka",
+    },
+    {
+      id: "LP-874",
+      target: "Ulasan · Dasar Pemrograman Web",
+      reporter: "siswa@email.demo",
+      reason: "Ujaran tidak pantas",
+      date: "10 Mei 2026",
+      status: "Terbuka",
+    },
+  ];
+  renderAdminModerationRows("admin-mod-tbody", rows);
+}
+
+function initAdminAccounts() {
+  const el = document.getElementById("admin-admins-tbody");
+  if (!el) {
+    return;
+  }
+  const rows = [
+    {
+      name: "Eka Ramadhan",
+      email: "eka@admin.demo",
+      role: "Super admin",
+      lastActive: "14 Mei 2026, 09:12",
+      status: "Aktif",
+    },
+    {
+      name: "Siti Nurhaliza",
+      email: "siti@admin.demo",
+      role: "Operator support",
+      lastActive: "13 Mei 2026, 16:40",
+      status: "Aktif",
+    },
+    {
+      name: "Finance Bot",
+      email: "finance@admin.demo",
+      role: "Finance",
+      lastActive: "12 Mei 2026, 08:05",
+      status: "Aktif",
+    },
+  ];
+  renderAdminAccountRows("admin-admins-tbody", rows);
+}
+
+function wireAdminHomepageForm() {
+  const form = document.getElementById("form-admin-homepage");
+  if (!form) {
+    return;
+  }
+  const headline = document.getElementById("hp-headline");
+  const sub = document.getElementById("hp-sub");
+  const ctaLabel = document.getElementById("hp-cta-label");
+  const ctaUrl = document.getElementById("hp-cta-url");
+  const banner = document.getElementById("hp-banner");
+  const prevTitle = document.getElementById("hp-preview-title");
+  const prevSub = document.getElementById("hp-preview-sub");
+  const prevCta = document.getElementById("hp-preview-cta");
+  const previewBox = document.getElementById("admin-hp-preview");
+
+  function syncPreview() {
+    if (prevTitle && headline) {
+      prevTitle.textContent = isNonEmptyString(headline.value) ? headline.value : "Pratinjau judul";
+    }
+    if (prevSub && sub) {
+      prevSub.textContent = isNonEmptyString(sub.value) ? sub.value : "Pratinjau subjudul muncul di sini.";
+    }
+    if (prevCta && ctaLabel) {
+      prevCta.textContent = isNonEmptyString(ctaLabel.value) ? ctaLabel.value : "Pratinjau CTA";
+    }
+    if (previewBox && banner && isProbableHttpUrl(banner.value) && isNonEmptyString(banner.value)) {
+      previewBox.style.backgroundImage =
+        "linear-gradient(160deg, rgba(224,231,255,0.92) 0%, rgba(248,250,252,0.95) 55%), url(" + banner.value.trim() + ")";
+      previewBox.style.backgroundSize = "cover";
+      previewBox.style.backgroundPosition = "center";
+    } else if (previewBox) {
+      previewBox.style.backgroundImage = "";
+      previewBox.style.background =
+        "linear-gradient(160deg, var(--color-primary-soft) 0%, var(--color-bg-main) 60%)";
+    }
+  }
+
+  let i = 0;
+  const inputs = [headline, sub, ctaLabel, ctaUrl, banner];
+  while (i < inputs.length) {
+    const inp = inputs[i];
+    if (inp) {
+      inp.addEventListener("input", syncPreview);
+    }
+    i += 1;
+  }
+  syncPreview();
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    clearFormErrors(form);
+    let ok = true;
+    if (headline && !isNonEmptyString(headline.value)) {
+      setFormError("hp-headline", "Judul wajib diisi.");
+      ok = false;
+    }
+    if (ctaUrl && !isProbableHttpUrl(ctaUrl.value)) {
+      setFormError("hp-cta-url", "Gunakan URL yang diawali http:// atau https://.");
+      ok = false;
+    }
+    if (banner && !isProbableHttpUrl(banner.value)) {
+      setFormError("hp-banner", "Gunakan URL gambar yang diawali http:// atau https://.");
+      ok = false;
+    }
+    if (ok) {
+      alert("Konfigurasi beranda (demo) disimpan.");
+    }
+  });
+}
+
+function wireAdminCategoryForm() {
+  const form = document.getElementById("form-admin-category");
+  if (!form) {
+    return;
+  }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    clearFormErrors(form);
+    const nameEl = document.getElementById("ac-name");
+    const slugEl = document.getElementById("ac-slug");
+    let ok = true;
+    if (!nameEl || !isNonEmptyString(nameEl.value)) {
+      setFormError("ac-name", "Nama wajib diisi.");
+      ok = false;
+    }
+    if (!slugEl || !isValidAdminSlug(slugEl.value)) {
+      setFormError("ac-slug", "Slug huruf kecil, angka, dan tanda hubung saja.");
+      ok = false;
+    }
+    if (ok) {
+      alert("Kategori (demo) ditambahkan ke antrean.");
+      form.reset();
+    }
+  });
+}
+
+function wireAdminInviteForm() {
+  const form = document.getElementById("form-admin-invite");
+  if (!form) {
+    return;
+  }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    clearFormErrors(form);
+    const email = document.getElementById("inv-email");
+    if (!email || !isValidEmail(email.value)) {
+      setFormError("inv-email", "Email undangan tidak valid.");
+      return;
+    }
+    alert("Undangan admin (demo) dikirim.");
+    form.reset();
+  });
+}
+
 document.addEventListener("DOMContentLoaded", async function () {
   const shell = document.body.getAttribute("data-shell") || "public";
   if (shell === "student") {
     await initStudentShell();
   } else if (shell === "instructor") {
     await initInstructorShell();
+  } else if (shell === "admin") {
+    await initAdminShell();
   } else {
     await initPublicShell();
   }
@@ -684,6 +1068,15 @@ document.addEventListener("DOMContentLoaded", async function () {
   initInstructorWithdrawalHistory();
   initInstructorReviews();
   initInstructorNotifications();
+  initAdminDashboard();
+  initAdminManageStudents();
+  initAdminManageInstructors();
+  initAdminApproveCourses();
+  initAdminVerifyPayments();
+  initAdminVerifyWithdrawals();
+  initAdminCategories();
+  initAdminModeration();
+  initAdminAccounts();
   wireAuthDemoForms();
   wireQuizDemoForm();
   wireInstructorWithdrawalForm();
@@ -692,4 +1085,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   wireInstructorCreateQuiz();
   wireInstructorDiscountForm();
   wireInstructorPublicProfile();
+  wireAdminDemoActions();
+  wireAdminHomepageForm();
+  wireAdminCategoryForm();
+  wireAdminInviteForm();
 });

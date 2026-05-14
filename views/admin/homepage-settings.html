@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banner &amp; Promo — E-Learn Admin</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="admin">
+    <div id="site-navbar"></div>
+    <div class="admin-layout">
+      <aside id="admin-sidebar"></aside>
+      <main class="admin-main">
+        <h1 class="page-title">Pengaturan banner &amp; promo</h1>
+        <p class="muted" style="margin-top: -1rem; margin-bottom: 1.5rem">
+          Mengatur hero landing publik dan strip promo atas katalog.
+        </p>
+        <div class="split-2">
+          <form id="form-admin-homepage" class="card" style="padding: 1.5rem">
+            <h2 class="section-heading" style="font-size: 1.1rem; margin-top: 0">Hero utama</h2>
+            <div class="form-group">
+              <label class="form-label" for="hp-headline">Judul</label>
+              <input class="form-control" id="hp-headline" type="text" value="Belajar tanpa batas, dari mentor terpercaya" />
+              <p class="form-error" aria-live="polite"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="hp-sub">Subjudul</label>
+              <textarea class="form-control" id="hp-sub" rows="3">Akses ribuan modul praktis dengan satu akun.</textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="hp-cta-label">Teks tombol CTA</label>
+              <input class="form-control" id="hp-cta-label" type="text" value="Jelajahi katalog" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="hp-cta-url">URL CTA</label>
+              <input class="form-control" id="hp-cta-url" type="url" placeholder="https://..." />
+              <p class="form-error" aria-live="polite"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="hp-banner">URL gambar banner</label>
+              <input class="form-control" id="hp-banner" type="url" placeholder="https://..." />
+              <p class="form-error" aria-live="polite"></p>
+            </div>
+            <button type="submit" class="btn btn-primary">Terbitkan perubahan (demo)</button>
+          </form>
+          <div>
+            <div class="card" style="padding: 1.5rem; margin-bottom: 1rem">
+              <h2 class="section-heading" style="font-size: 1.1rem; margin-top: 0">Pratinjau</h2>
+              <p class="muted" style="margin: 0 0 1rem">Kotak di bawah meniru area hero; gaya mengikuti token desain.</p>
+              <div
+                id="admin-hp-preview"
+                style="
+                  border-radius: var(--radius-lg);
+                  border: 1px solid var(--color-border);
+                  padding: 1.5rem;
+                  background: linear-gradient(160deg, var(--color-primary-soft) 0%, var(--color-bg-main) 60%);
+                "
+              >
+                <h2 id="hp-preview-title" style="margin: 0 0 0.5rem; font-size: 1.25rem; color: var(--color-text-dark)">Pratinjau judul</h2>
+                <p id="hp-preview-sub" class="muted" style="margin: 0 0 1rem; font-size: 0.9rem">Pratinjau subjudul muncul di sini.</p>
+                <span id="hp-preview-cta" class="btn btn-primary" style="pointer-events: none">Pratinjau CTA</span>
+              </div>
+            </div>
+            <div class="card" style="padding: 1.25rem">
+              <p class="muted" style="margin: 0; font-size: 0.875rem">
+                Setelah backend tersedia, simpan sebagai konfigurasi JSON dan invalidasi CDN statis.
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

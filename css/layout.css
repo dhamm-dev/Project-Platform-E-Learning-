@@ -327,9 +327,10 @@
   margin-bottom: 1rem;
 }
 
-/* —— Student & instructor app shell —— */
+/* —— Student, instructor & admin app shell —— */
 .student-layout,
-.instructor-layout {
+.instructor-layout,
+.admin-layout {
   flex: 1;
   width: 100%;
   max-width: 1200px;
@@ -342,14 +343,16 @@
 
 @media (min-width: 900px) {
   .student-layout,
-  .instructor-layout {
+  .instructor-layout,
+  .admin-layout {
     grid-template-columns: 220px minmax(0, 1fr);
     padding-top: 1.25rem;
   }
 }
 
 .sidebar-student,
-.sidebar-instructor {
+.sidebar-instructor,
+.sidebar-admin {
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -359,14 +362,16 @@
 
 @media (min-width: 900px) {
   .sidebar-student,
-  .sidebar-instructor {
+  .sidebar-instructor,
+  .sidebar-admin {
     position: sticky;
     top: 4.5rem;
   }
 }
 
 .sidebar-student-title,
-.sidebar-instructor-title {
+.sidebar-instructor-title,
+.sidebar-admin-title {
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -376,7 +381,8 @@
 }
 
 .sidebar-student-list,
-.sidebar-instructor-list {
+.sidebar-instructor-list,
+.sidebar-admin-list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -386,7 +392,8 @@
 }
 
 .sidebar-student-list a,
-.sidebar-instructor-list a {
+.sidebar-instructor-list a,
+.sidebar-admin-list a {
   display: block;
   padding: 0.45rem 0.5rem;
   border-radius: var(--radius-md);
@@ -396,25 +403,29 @@
 }
 
 .sidebar-student-list a:hover,
-.sidebar-instructor-list a:hover {
+.sidebar-instructor-list a:hover,
+.sidebar-admin-list a:hover {
   background: var(--color-bg-main);
   color: var(--color-primary);
   text-decoration: none;
 }
 
 .student-main,
-.instructor-main {
+.instructor-main,
+.admin-main {
   min-width: 0;
   padding-bottom: 1rem;
 }
 
 .student-main .page-title,
-.instructor-main .page-title {
+.instructor-main .page-title,
+.admin-main .page-title {
   margin-top: 0;
 }
 
 .student-toolbar,
-.instructor-toolbar {
+.instructor-toolbar,
+.admin-toolbar {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
@@ -488,6 +499,13 @@
 
 .table-simple tr:last-child td {
   border-bottom: none;
+}
+
+.table-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
 }
 
 .split-2 {

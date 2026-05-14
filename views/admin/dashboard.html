@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Admin — E-Learn</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="admin">
+    <div id="site-navbar"></div>
+    <div class="admin-layout">
+      <aside id="admin-sidebar"></aside>
+      <main class="admin-main">
+        <h1 class="page-title">Ringkasan operasional</h1>
+        <p class="muted" style="margin-top: -1rem; margin-bottom: 1.5rem">
+          Pantau pertumbuhan platform, antrean moderasi, dan arus kas dalam satu layar.
+        </p>
+        <div class="stat-row">
+          <article class="card stat-card">
+            <h3>Total siswa aktif</h3>
+            <p class="stat-value">12.480</p>
+          </article>
+          <article class="card stat-card">
+            <h3>Instruktur terverifikasi</h3>
+            <p class="stat-value">186</p>
+          </article>
+          <article class="card stat-card">
+            <h3>Kelas menunggu review</h3>
+            <p class="stat-value">5</p>
+          </article>
+          <article class="card stat-card">
+            <h3>Pembayaran perlu cek</h3>
+            <p class="stat-value">3</p>
+          </article>
+        </div>
+        <div class="admin-toolbar">
+          <h2 class="section-heading" style="margin: 0; font-size: 1.15rem">Antrean singkat</h2>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap">
+            <a class="btn btn-secondary" href="approve-courses.html">Review kelas</a>
+            <a class="btn btn-primary" href="verify-payments.html">Verifikasi bayar</a>
+          </div>
+        </div>
+        <div class="split-2">
+          <section>
+            <h2 class="section-heading" style="font-size: 1.05rem">Aktivitas terbaru</h2>
+            <div class="card" style="overflow: hidden; padding: 0">
+              <div id="admin-activity-list"></div>
+            </div>
+          </section>
+          <section>
+            <h2 class="section-heading" style="font-size: 1.05rem">Tautan cepat</h2>
+            <div class="card" style="padding: 1.25rem">
+              <ul class="muted" style="margin: 0; padding-left: 1.1rem; line-height: 1.8">
+                <li><a href="manage-students.html">Manajemen siswa</a></li>
+                <li><a href="manage-instructors.html">Manajemen instruktur</a></li>
+                <li><a href="verify-withdrawals.html">Penarikan instruktur</a></li>
+                <li><a href="moderate-reviews.html">Laporan ulasan</a></li>
+                <li><a href="manage-admins.html">Hak akses admin</a></li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>
