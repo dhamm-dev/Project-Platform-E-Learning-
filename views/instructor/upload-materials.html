@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unggah Materi — E-Learn</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="instructor">
+    <div id="site-navbar"></div>
+    <div class="instructor-layout">
+      <aside id="instructor-sidebar"></aside>
+      <main class="instructor-main">
+        <h1 class="page-title">Unggah video &amp; materi</h1>
+        <p class="muted" style="margin-top: -1rem; margin-bottom: 1.5rem">
+          Lampirkan file ke modul yang dipilih. Format video disarankan MP4 (H.264).
+        </p>
+        <form id="form-instructor-upload" class="card" style="padding: 1.35rem 1.45rem; max-width: 640px">
+          <div class="form-group">
+            <label class="form-label" for="up-module">Modul tujuan</label>
+            <select class="form-control" id="up-module" name="module">
+              <option>1 — Perkenalan &amp; alur belajar</option>
+              <option>2 — HTML semantik</option>
+              <option>3 — Latihan struktur halaman</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="up-video">File video</label>
+            <input class="form-control" id="up-video" name="video" type="file" accept="video/*" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="up-docs">Materi pendukung (PDF/ZIP)</label>
+            <input class="form-control" id="up-docs" name="docs" type="file" accept=".pdf,.zip,application/pdf,application/zip" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="up-caption">Catatan untuk siswa (opsional)</label>
+            <textarea class="form-control" id="up-caption" name="caption" rows="3" placeholder="Prasyarat atau tautan tambahan…"></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Kirim ke antrian unggah</button>
+        </form>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

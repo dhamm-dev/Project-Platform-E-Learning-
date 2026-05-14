@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manajemen Kurikulum — E-Learn</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="instructor">
+    <div id="site-navbar"></div>
+    <div class="instructor-layout">
+      <aside id="instructor-sidebar"></aside>
+      <main class="instructor-main">
+        <div class="instructor-toolbar">
+          <div>
+            <h1 class="page-title" style="margin-bottom: 0.35rem">Kurikulum &amp; silabus</h1>
+            <p class="muted" style="margin: 0">Kelas: <strong>Dasar Pemrograman Web</strong></p>
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap">
+            <a class="btn btn-secondary" href="upload-materials.html">Unggah materi</a>
+            <a class="btn btn-primary" href="create-quiz.html">Tambah kuis</a>
+          </div>
+        </div>
+        <p class="muted" style="margin-bottom: 1.25rem">
+          Urutkan modul, tentukan jenis konten, dan tandai status sebelum penerbitan.
+        </p>
+        <div class="table-wrap">
+          <table class="table-simple">
+            <thead>
+              <tr>
+                <th>Urutan</th>
+                <th>Judul modul</th>
+                <th>Jenis</th>
+                <th>Durasi / info</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="instructor-curriculum-tbody"></tbody>
+          </table>
+        </div>
+        <p class="muted" style="margin-top: 1rem; font-size: 0.875rem">
+          Integrasi penyimpanan file dan penyusunan urutan penuh dilakukan di backend.
+        </p>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

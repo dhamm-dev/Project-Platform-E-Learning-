@@ -34,6 +34,12 @@ async function initStudentShell() {
   await injectIntoSelector("#site-footer", COMPONENT_BASE + "footer-student.html");
 }
 
+async function initInstructorShell() {
+  await injectIntoSelector("#site-navbar", COMPONENT_BASE + "navbar-instructor.html");
+  await injectIntoSelector("#instructor-sidebar", COMPONENT_BASE + "sidebar-instructor.html");
+  await injectIntoSelector("#site-footer", COMPONENT_BASE + "footer-instructor.html");
+}
+
 function renderCourseCards(containerId, courses) {
   const container = document.getElementById(containerId);
   if (!container || !Array.isArray(courses)) {
@@ -155,6 +161,225 @@ function renderTransactionRows(containerId, rows) {
       "</td><td>" +
       row.date +
       "</td></tr>";
+    i += 1;
+  }
+  container.innerHTML = htmlString;
+}
+
+function renderInstructorManageCards(containerId, courses) {
+  const container = document.getElementById(containerId);
+  if (!container || !Array.isArray(courses)) {
+    return;
+  }
+  let htmlString = "";
+  let i = 0;
+  while (i < courses.length) {
+    const item = courses[i];
+    const href = typeof item.href === "string" ? item.href : "#";
+    htmlString +=
+      '<a class="course-card-wrap" href="' +
+      href +
+      '">' +
+      '<article class="card course-card-mini">' +
+      '<span class="badge">' +
+      item.status +
+      "</span>" +
+      "<h3>" +
+      item.title +
+      "</h3>" +
+      '<p class="course-meta">' +
+      item.meta +
+      "</p>" +
+      "</article>" +
+      "</a>";
+    i += 1;
+  }
+  container.innerHTML = htmlString;
+}
+
+function renderCurriculumRows(containerId, rows) {
+  const container = document.getElementById(containerId);
+  if (!container || !Array.isArray(rows)) {
+    return;
+  }
+  let htmlString = "";
+  let i = 0;
+  while (i < rows.length) {
+    const row = rows[i];
+    htmlString +=
+      "<tr><td>" +
+      row.order +
+      "</td><td>" +
+      row.title +
+      "</td><td>" +
+      row.type +
+      "</td><td>" +
+      row.duration +
+      "</td><td>" +
+      row.status +
+      "</td></tr>";
+    i += 1;
+  }
+  container.innerHTML = htmlString;
+}
+
+function renderEnrolledStudentRows(containerId, rows) {
+  const container = document.getElementById(containerId);
+  if (!container || !Array.isArray(rows)) {
+    return;
+  }
+  let htmlString = "";
+  let i = 0;
+  while (i < rows.length) {
+    const row = rows[i];
+    htmlString +=
+      "<tr><td>" +
+      row.name +
+      "</td><td>" +
+      row.email +
+      "</td><td>" +
+      row.course +
+      "</td><td>" +
+      row.enrolled +
+      "</td><td>" +
+      row.progress +
+      "</td></tr>";
+    i += 1;
+  }
+  container.innerHTML = htmlString;
+}
+
+function renderQnaRows(containerId, rows) {
+  const container = document.getElementById(containerId);
+  if (!container || !Array.isArray(rows)) {
+    return;
+  }
+  let htmlString = "";
+  let i = 0;
+  while (i < rows.length) {
+    const row = rows[i];
+    htmlString +=
+      "<tr><td>" +
+      row.course +
+      "</td><td>" +
+      row.student +
+      "</td><td>" +
+      row.excerpt +
+      "</td><td>" +
+      row.posted +
+      "</td><td>" +
+      row.status +
+      "</td></tr>";
+    i += 1;
+  }
+  container.innerHTML = htmlString;
+}
+
+function renderDiscountRows(containerId, rows) {
+  const container = document.getElementById(containerId);
+  if (!container || !Array.isArray(rows)) {
+    return;
+  }
+  let htmlString = "";
+  let i = 0;
+  while (i < rows.length) {
+    const row = rows[i];
+    htmlString +=
+      "<tr><td>" +
+      row.code +
+      "</td><td>" +
+      row.course +
+      "</td><td>" +
+      row.value +
+      "</td><td>" +
+      row.expires +
+      "</td><td>" +
+      row.uses +
+      "</td></tr>";
+    i += 1;
+  }
+  container.innerHTML = htmlString;
+}
+
+function renderRevenueRows(containerId, rows) {
+  const container = document.getElementById(containerId);
+  if (!container || !Array.isArray(rows)) {
+    return;
+  }
+  let htmlString = "";
+  let i = 0;
+  while (i < rows.length) {
+    const row = rows[i];
+    htmlString +=
+      "<tr><td>" +
+      row.period +
+      "</td><td>" +
+      formatRupiah(row.gross) +
+      "</td><td>" +
+      formatRupiah(row.fee) +
+      "</td><td>" +
+      formatRupiah(row.net) +
+      "</td><td>" +
+      row.note +
+      "</td></tr>";
+    i += 1;
+  }
+  container.innerHTML = htmlString;
+}
+
+function renderWithdrawalRows(containerId, rows) {
+  const container = document.getElementById(containerId);
+  if (!container || !Array.isArray(rows)) {
+    return;
+  }
+  let htmlString = "";
+  let i = 0;
+  while (i < rows.length) {
+    const row = rows[i];
+    htmlString +=
+      "<tr><td>" +
+      row.id +
+      "</td><td>" +
+      formatRupiah(row.amount) +
+      "</td><td>" +
+      row.bank +
+      "</td><td>" +
+      row.status +
+      "</td><td>" +
+      row.date +
+      "</td></tr>";
+    i += 1;
+  }
+  container.innerHTML = htmlString;
+}
+
+function renderInstructorReviewCards(containerId, items) {
+  const container = document.getElementById(containerId);
+  if (!container || !Array.isArray(items)) {
+    return;
+  }
+  let htmlString = "";
+  let i = 0;
+  while (i < items.length) {
+    const item = items[i];
+    htmlString +=
+      '<article class="card" style="padding:1.1rem 1.2rem;margin-bottom:0.85rem">' +
+      '<div style="display:flex;justify-content:space-between;gap:0.75rem;flex-wrap:wrap;margin-bottom:0.5rem">' +
+      "<strong>" +
+      item.course +
+      "</strong>" +
+      '<span class="badge">' +
+      item.stars +
+      " / 5</span></div>" +
+      '<p class="muted" style="margin:0 0 0.35rem;font-size:0.875rem">' +
+      item.student +
+      " · " +
+      item.date +
+      "</p>" +
+      "<p style=\"margin:0;color:var(--color-text-dark)\">" +
+      item.comment +
+      "</p>" +
+      "</article>";
     i += 1;
   }
   container.innerHTML = htmlString;

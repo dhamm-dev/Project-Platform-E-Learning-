@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buat Kuis — E-Learn</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="instructor">
+    <div id="site-navbar"></div>
+    <div class="instructor-layout">
+      <aside id="instructor-sidebar"></aside>
+      <main class="instructor-main">
+        <h1 class="page-title">Buat kuis</h1>
+        <p class="muted" style="margin-top: -1rem; margin-bottom: 1.5rem">
+          Definisikan judul, bobot, dan jadwal; editor soal penuh dihubungkan ke API.
+        </p>
+        <form id="form-instructor-quiz" class="card" style="padding: 1.35rem 1.45rem; max-width: 640px">
+          <div class="form-group">
+            <label class="form-label" for="qz-title">Judul kuis</label>
+            <input class="form-control" id="qz-title" name="title" type="text" placeholder="Checkpoint modul 1" />
+          </div>
+          <div class="split-2">
+            <div class="form-group">
+              <label class="form-label" for="qz-pass">Nilai lulus (%)</label>
+              <input class="form-control" id="qz-pass" name="pass" type="number" min="0" max="100" value="70" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="qz-time">Batas waktu (menit)</label>
+              <input class="form-control" id="qz-time" name="minutes" type="number" min="5" value="20" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="qz-desc">Instruksi singkat</label>
+            <textarea class="form-control" id="qz-desc" name="desc" rows="3" placeholder="Tampilkan sebelum siswa memulai…"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="qz-count">Jumlah soal (perkiraan)</label>
+            <input class="form-control" id="qz-count" name="count" type="number" min="1" value="10" />
+          </div>
+          <div style="display: flex; gap: 0.65rem; flex-wrap: wrap">
+            <button class="btn btn-primary" type="submit">Simpan bank soal</button>
+            <a class="btn btn-secondary" href="curriculum-manager.html">Kembali ke silabus</a>
+          </div>
+        </form>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

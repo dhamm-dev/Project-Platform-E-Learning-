@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Instruktur — E-Learn</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="instructor">
+    <div id="site-navbar"></div>
+    <div class="instructor-layout">
+      <aside id="instructor-sidebar"></aside>
+      <main class="instructor-main">
+        <h1 class="page-title">Ringkasan studio</h1>
+        <p class="muted" style="margin-top: -1rem; margin-bottom: 1.5rem">
+          Pantau performa kelas, pendapatan bersih, dan aktivitas siswa dalam satu layar.
+        </p>
+        <div class="stat-row">
+          <article class="card stat-card">
+            <h3>Pendapatan bulan ini</h3>
+            <p class="stat-value">Rp16,6jt</p>
+          </article>
+          <article class="card stat-card">
+            <h3>Siswa aktif (30 hari)</h3>
+            <p class="stat-value">842</p>
+          </article>
+          <article class="card stat-card">
+            <h3>Kelas terbit</h3>
+            <p class="stat-value">2</p>
+          </article>
+          <article class="card stat-card">
+            <h3>Saldo dapat ditarik</h3>
+            <p class="stat-value">Rp8,2jt</p>
+          </article>
+        </div>
+        <div class="instructor-toolbar">
+          <h2 class="section-heading" style="margin: 0; font-size: 1.15rem">Kelas utama</h2>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap">
+            <a class="btn btn-secondary" href="revenue-report.html">Laporan detail</a>
+            <a class="btn btn-primary" href="create-course.html">Buat kelas</a>
+          </div>
+        </div>
+        <div id="instructor-dash-courses" class="course-grid"></div>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

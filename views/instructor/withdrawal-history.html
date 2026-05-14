@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Riwayat Penarikan — E-Learn</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="instructor">
+    <div id="site-navbar"></div>
+    <div class="instructor-layout">
+      <aside id="instructor-sidebar"></aside>
+      <main class="instructor-main">
+        <div class="instructor-toolbar">
+          <div>
+            <h1 class="page-title" style="margin-bottom: 0.35rem">Riwayat penarikan</h1>
+            <p class="muted" style="margin: 0">Status verifikasi admin dan transfer bank.</p>
+          </div>
+          <a class="btn btn-primary" href="withdrawal-form.html">Ajukan lagi</a>
+        </div>
+        <div class="table-wrap">
+          <table class="table-simple">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Jumlah</th>
+                <th>Rekening</th>
+                <th>Status</th>
+                <th>Tanggal</th>
+              </tr>
+            </thead>
+            <tbody id="instructor-wd-tbody"></tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

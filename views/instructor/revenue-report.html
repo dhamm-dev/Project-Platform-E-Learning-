@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laporan Pendapatan — E-Learn</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="instructor">
+    <div id="site-navbar"></div>
+    <div class="instructor-layout">
+      <aside id="instructor-sidebar"></aside>
+      <main class="instructor-main">
+        <h1 class="page-title">Laporan pendapatan</h1>
+        <p class="muted" style="margin-top: -1rem; margin-bottom: 1.25rem">
+          Bruto, biaya platform, dan bersih per periode penagihan.
+        </p>
+        <div class="stat-row" style="margin-bottom: 1.5rem">
+          <article class="card stat-card">
+            <h3>Bersih YTD</h3>
+            <p class="stat-value">Rp43,9jt</p>
+          </article>
+          <article class="card stat-card">
+            <h3>Biaya platform YTD</h3>
+            <p class="stat-value">Rp4,9jt</p>
+          </article>
+        </div>
+        <div class="table-wrap">
+          <table class="table-simple">
+            <thead>
+              <tr>
+                <th>Periode</th>
+                <th>Bruto</th>
+                <th>Biaya</th>
+                <th>Bersih</th>
+                <th>Catatan</th>
+              </tr>
+            </thead>
+            <tbody id="instructor-revenue-tbody"></tbody>
+          </table>
+        </div>
+        <p class="muted" style="margin-top: 1rem; font-size: 0.875rem">
+          Ekspor CSV dan rekonsiliasi penuh tersedia setelah integrasi pembayaran.
+        </p>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

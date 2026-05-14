@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil Publik Instruktur — E-Learn</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="instructor">
+    <div id="site-navbar"></div>
+    <div class="instructor-layout">
+      <aside id="instructor-sidebar"></aside>
+      <main class="instructor-main">
+        <h1 class="page-title">Profil publik</h1>
+        <p class="muted" style="margin-top: -1rem; margin-bottom: 1.5rem">
+          Informasi ini tampil di halaman instruktur dan kartu kelas.
+        </p>
+        <form id="form-instructor-public-profile" class="card" style="padding: 1.35rem 1.45rem; max-width: 720px">
+          <div class="form-group">
+            <label class="form-label" for="pp-name">Nama tampilan</label>
+            <input class="form-control" id="pp-name" name="name" type="text" value="Andi Pratama" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="pp-headline">Judul singkat</label>
+            <input class="form-control" id="pp-headline" name="headline" type="text" value="Instruktur web &amp; produk digital" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="pp-bio">Bio</label>
+            <textarea class="form-control" id="pp-bio" name="bio" rows="5" placeholder="Pengalaman, fokus mengajar, dan prinsip Anda…"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="pp-photo">Foto profil (URL demo)</label>
+            <input class="form-control" id="pp-photo" name="photo" type="url" placeholder="https://…" />
+          </div>
+          <div class="split-2">
+            <div class="form-group">
+              <label class="form-label" for="pp-linkedin">LinkedIn</label>
+              <input class="form-control" id="pp-linkedin" name="linkedin" type="url" placeholder="https://linkedin.com/in/…" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="pp-web">Situs pribadi</label>
+              <input class="form-control" id="pp-web" name="web" type="url" placeholder="https://…" />
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit">Simpan profil</button>
+        </form>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

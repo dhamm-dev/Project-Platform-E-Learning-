@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Penarikan Saldo — E-Learn</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="instructor">
+    <div id="site-navbar"></div>
+    <div class="instructor-layout">
+      <aside id="instructor-sidebar"></aside>
+      <main class="instructor-main">
+        <h1 class="page-title">Tarik saldo</h1>
+        <p class="muted" style="margin-top: -1rem; margin-bottom: 1.5rem">
+          Saldo tersedia (demo): <strong>Rp8.200.000</strong>. Minimum penarikan Rp100.000.
+        </p>
+        <form id="form-instructor-withdraw" class="card" style="padding: 1.35rem 1.45rem; max-width: 480px">
+          <div class="form-group">
+            <label class="form-label" for="wd-amount">Jumlah (IDR)</label>
+            <input class="form-control" id="wd-amount" name="amount" type="number" min="100000" step="50000" placeholder="1000000" />
+            <p class="form-error" role="alert"></p>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="wd-bank">Rekening tujuan</label>
+            <select class="form-control" id="wd-bank" name="bank">
+              <option value="">Pilih rekening</option>
+              <option value="bca1">BCA · ****3210 — a.n. Andi Pratama</option>
+              <option value="mandiri1">Mandiri · ****8891 — a.n. Andi Pratama</option>
+            </select>
+            <p class="form-error" role="alert"></p>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="wd-note">Catatan internal (opsional)</label>
+            <input class="form-control" id="wd-note" name="note" type="text" placeholder="Referensi pembukuan pribadi" />
+          </div>
+          <div style="display: flex; gap: 0.65rem; flex-wrap: wrap">
+            <button class="btn btn-primary" type="submit">Ajukan penarikan</button>
+            <a class="btn btn-secondary" href="withdrawal-history.html">Riwayat</a>
+          </div>
+        </form>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

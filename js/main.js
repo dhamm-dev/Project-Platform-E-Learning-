@@ -340,10 +340,330 @@ function wireQuizDemoForm() {
   });
 }
 
+function getDemoInstructorCourses() {
+  return [
+    {
+      title: "Dasar Pemrograman Web",
+      meta: "12 modul · 1.240 siswa",
+      status: "Terbit",
+      href: "curriculum-manager.html",
+    },
+    {
+      title: "Workshop UI Mobile",
+      meta: "6 modul · 412 siswa",
+      status: "Draft",
+      href: "create-course.html",
+    },
+    {
+      title: "Manajemen Produk Digital",
+      meta: "10 modul · 890 siswa",
+      status: "Menunggu review",
+      href: "my-courses.html",
+    },
+  ];
+}
+
+function initInstructorDashboard() {
+  const el = document.getElementById("instructor-dash-courses");
+  if (!el) {
+    return;
+  }
+  const subset = getDemoInstructorCourses().slice(0, 2);
+  renderInstructorManageCards("instructor-dash-courses", subset);
+}
+
+function initInstructorMyCourses() {
+  const el = document.getElementById("instructor-my-courses-grid");
+  if (!el) {
+    return;
+  }
+  renderInstructorManageCards("instructor-my-courses-grid", getDemoInstructorCourses());
+}
+
+function initInstructorCurriculum() {
+  const el = document.getElementById("instructor-curriculum-tbody");
+  if (!el) {
+    return;
+  }
+  const rows = [
+    { order: "1", title: "Perkenalan & alur belajar", type: "Video", duration: "08:00", status: "Terbit" },
+    { order: "2", title: "HTML semantik", type: "Video", duration: "22:00", status: "Terbit" },
+    { order: "3", title: "Latihan struktur halaman", type: "Tugas", duration: "—", status: "Draft" },
+    { order: "4", title: "Checkpoint modul 1", type: "Kuis", duration: "15 soal", status: "Terbit" },
+  ];
+  renderCurriculumRows("instructor-curriculum-tbody", rows);
+}
+
+function initInstructorEnrolled() {
+  const el = document.getElementById("instructor-enrolled-tbody");
+  if (!el) {
+    return;
+  }
+  const rows = [
+    {
+      name: "Rina Kusuma",
+      email: "rina@email.demo",
+      course: "Dasar Pemrograman Web",
+      enrolled: "28 Apr 2026",
+      progress: "42%",
+    },
+    {
+      name: "Budi Hartono",
+      email: "budi@email.demo",
+      course: "Dasar Pemrograman Web",
+      enrolled: "30 Apr 2026",
+      progress: "18%",
+    },
+    {
+      name: "Maya Sari",
+      email: "maya@email.demo",
+      course: "Manajemen Produk Digital",
+      enrolled: "5 Mei 2026",
+      progress: "76%",
+    },
+  ];
+  renderEnrolledStudentRows("instructor-enrolled-tbody", rows);
+}
+
+function initInstructorQna() {
+  const el = document.getElementById("instructor-qna-tbody");
+  if (!el) {
+    return;
+  }
+  const rows = [
+    {
+      course: "Dasar Pemrograman Web",
+      student: "Rina K.",
+      excerpt: "Bagaimana cara menautkan CSS eksternal…",
+      posted: "13 Mei 2026",
+      status: "Belum dijawab",
+    },
+    {
+      course: "Manajemen Produk Digital",
+      student: "Maya S.",
+      excerpt: "Apakah template roadmap bisa digunakan…",
+      posted: "12 Mei 2026",
+      status: "Sudah dijawab",
+    },
+  ];
+  renderQnaRows("instructor-qna-tbody", rows);
+}
+
+function initInstructorDiscounts() {
+  const el = document.getElementById("instructor-discount-tbody");
+  if (!el) {
+    return;
+  }
+  const rows = [
+    {
+      code: "WEB10",
+      course: "Dasar Pemrograman Web",
+      value: "10%",
+      expires: "30 Jun 2026",
+      uses: "34 / 200",
+    },
+    {
+      code: "PRODUK50K",
+      course: "Manajemen Produk Digital",
+      value: formatRupiah(50000),
+      expires: "15 Mei 2026",
+      uses: "12 / 80",
+    },
+  ];
+  renderDiscountRows("instructor-discount-tbody", rows);
+}
+
+function initInstructorRevenue() {
+  const el = document.getElementById("instructor-revenue-tbody");
+  if (!el) {
+    return;
+  }
+  const rows = [
+    { period: "Apr 2026", gross: 18500000, fee: 1850000, net: 16650000, note: "Settled" },
+    { period: "Mar 2026", gross: 16200000, fee: 1620000, net: 14580000, note: "Settled" },
+    { period: "Feb 2026", gross: 14100000, fee: 1410000, net: 12690000, note: "Settled" },
+  ];
+  renderRevenueRows("instructor-revenue-tbody", rows);
+}
+
+function initInstructorWithdrawalHistory() {
+  const el = document.getElementById("instructor-wd-tbody");
+  if (!el) {
+    return;
+  }
+  const rows = [
+    {
+      id: "WD-2026-0041",
+      amount: 5000000,
+      bank: "BCA · ****3210",
+      status: "Selesai",
+      date: "8 Mei 2026",
+    },
+    {
+      id: "WD-2026-0012",
+      amount: 3500000,
+      bank: "BCA · ****3210",
+      status: "Selesai",
+      date: "10 Apr 2026",
+    },
+  ];
+  renderWithdrawalRows("instructor-wd-tbody", rows);
+}
+
+function initInstructorReviews() {
+  const el = document.getElementById("instructor-reviews-list");
+  if (!el) {
+    return;
+  }
+  const items = [
+    {
+      course: "Dasar Pemrograman Web",
+      student: "Andi W.",
+      date: "11 Mei 2026",
+      stars: "5",
+      comment: "Penjelasan modul awal sangat jelas dan contoh kodenya relevan.",
+    },
+    {
+      course: "Manajemen Produk Digital",
+      student: "Lia P.",
+      date: "9 Mei 2026",
+      stars: "4",
+      comment: "Studi kasusnya membantu; perlu sedikit lebih banyak referensi bacaan.",
+    },
+  ];
+  renderInstructorReviewCards("instructor-reviews-list", items);
+}
+
+function initInstructorNotifications() {
+  const el = document.getElementById("instructor-notif-list");
+  if (!el) {
+    return;
+  }
+  const items = [
+    {
+      title: "Penarikan saldo disetujui",
+      body: "Permintaan WD-2026-0041 telah ditransfer ke rekening terdaftar.",
+      time: "1 jam lalu",
+      unread: true,
+    },
+    {
+      title: "Pertanyaan baru di kelas",
+      body: "Siswa mengajukan pertanyaan di modul 2 — Dasar Pemrograman Web.",
+      time: "Kemarin",
+      unread: true,
+    },
+    {
+      title: "Kelas lolos moderasi",
+      body: "Workshop UI Mobile siap diterbitkan setelah Anda menambahkan thumbnail.",
+      time: "3 hari lalu",
+      unread: false,
+    },
+  ];
+  renderNotificationList("instructor-notif-list", items);
+}
+
+function wireInstructorWithdrawalForm() {
+  const form = document.getElementById("form-instructor-withdraw");
+  if (!form) {
+    return;
+  }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    clearFormErrors(form);
+    const amount = document.getElementById("wd-amount");
+    const bank = document.getElementById("wd-bank");
+    let ok = true;
+    const n = amount ? Number(amount.value) : 0;
+    if (!amount || !isNonEmptyString(amount.value) || Number.isNaN(n) || n < 100000) {
+      setFormError("wd-amount", "Minimal penarikan Rp100.000 (demo).");
+      ok = false;
+    }
+    if (!bank || !isNonEmptyString(bank.value)) {
+      setFormError("wd-bank", "Pilih rekening tujuan.");
+      ok = false;
+    }
+    if (ok) {
+      alert("Permintaan penarikan (demo) tervalidasi. Hubungkan ke API untuk proses nyata.");
+    }
+  });
+}
+
+function wireInstructorUploadDemo() {
+  const form = document.getElementById("form-instructor-upload");
+  if (!form) {
+    return;
+  }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    alert("Unggah materi (demo): file akan diproses setelah backend tersedia.");
+  });
+}
+
+function wireInstructorCreateCourse() {
+  const form = document.getElementById("form-instructor-create-course");
+  if (!form) {
+    return;
+  }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    clearFormErrors(form);
+    const title = document.getElementById("cc-title");
+    let ok = true;
+    if (!title || !isNonEmptyString(title.value)) {
+      setFormError("cc-title", "Judul kelas wajib diisi.");
+      ok = false;
+    }
+    if (ok) {
+      alert("Draf kelas (demo) disimpan. Lanjut ke kurikulum dari menu samping.");
+    }
+  });
+}
+
+function wireInstructorCreateQuiz() {
+  const form = document.getElementById("form-instructor-quiz");
+  if (!form) {
+    return;
+  }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    alert("Bank soal kuis (demo) disimpan.");
+  });
+}
+
+function wireInstructorDiscountForm() {
+  const form = document.getElementById("form-instructor-discount");
+  if (!form) {
+    return;
+  }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    clearFormErrors(form);
+    const code = document.getElementById("disc-code");
+    if (!code || !isNonEmptyString(code.value)) {
+      setFormError("disc-code", "Kode kupon wajib diisi.");
+      return;
+    }
+    alert("Kupon (demo) ditambahkan ke daftar.");
+  });
+}
+
+function wireInstructorPublicProfile() {
+  const form = document.getElementById("form-instructor-public-profile");
+  if (!form) {
+    return;
+  }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    alert("Profil publik (demo) diperbarui.");
+  });
+}
+
 document.addEventListener("DOMContentLoaded", async function () {
   const shell = document.body.getAttribute("data-shell") || "public";
   if (shell === "student") {
     await initStudentShell();
+  } else if (shell === "instructor") {
+    await initInstructorShell();
   } else {
     await initPublicShell();
   }
@@ -354,6 +674,22 @@ document.addEventListener("DOMContentLoaded", async function () {
   initStudentDashboardCourses();
   initStudentNotifications();
   initStudentTransactions();
+  initInstructorDashboard();
+  initInstructorMyCourses();
+  initInstructorCurriculum();
+  initInstructorEnrolled();
+  initInstructorQna();
+  initInstructorDiscounts();
+  initInstructorRevenue();
+  initInstructorWithdrawalHistory();
+  initInstructorReviews();
+  initInstructorNotifications();
   wireAuthDemoForms();
   wireQuizDemoForm();
+  wireInstructorWithdrawalForm();
+  wireInstructorUploadDemo();
+  wireInstructorCreateCourse();
+  wireInstructorCreateQuiz();
+  wireInstructorDiscountForm();
+  wireInstructorPublicProfile();
 });

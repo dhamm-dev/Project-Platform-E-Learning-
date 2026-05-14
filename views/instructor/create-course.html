@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buat Kelas Baru — E-Learn</title>
+    <link rel="stylesheet" href="../../css/globals.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+  </head>
+  <body data-shell="instructor">
+    <div id="site-navbar"></div>
+    <div class="instructor-layout">
+      <aside id="instructor-sidebar"></aside>
+      <main class="instructor-main">
+        <h1 class="page-title">Buat kelas baru</h1>
+        <p class="muted" style="margin-top: -1rem; margin-bottom: 1.5rem">
+          Isi metadata awal; kurikulum rinci dapat ditambahkan setelah draf tersimpan.
+        </p>
+        <form id="form-instructor-create-course" class="card" style="padding: 1.35rem 1.45rem; max-width: 720px">
+          <div class="form-group">
+            <label class="form-label" for="cc-title">Judul kelas</label>
+            <input class="form-control" id="cc-title" name="title" type="text" placeholder="Mis. Dasar UX Research" />
+            <p class="form-error" role="alert"></p>
+          </div>
+          <div class="split-2">
+            <div class="form-group">
+              <label class="form-label" for="cc-cat">Kategori</label>
+              <select class="form-control" id="cc-cat" name="category">
+                <option>Teknologi</option>
+                <option>Desain</option>
+                <option>Bisnis</option>
+                <option>Bahasa</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cc-level">Level</label>
+              <select class="form-control" id="cc-level" name="level">
+                <option>Pemula</option>
+                <option>Menengah</option>
+                <option>Lanjutan</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cc-price">Harga (IDR)</label>
+            <input class="form-control" id="cc-price" name="price" type="number" min="0" step="1000" placeholder="199000" />
+            <p class="form-hint">Kosongkan untuk kelas gratis (atur nanti).</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cc-summary">Ringkasan untuk halaman publik</label>
+            <textarea class="form-control" id="cc-summary" name="summary" rows="4" placeholder="Apa yang akan siswa dapatkan?"></textarea>
+          </div>
+          <div style="display: flex; gap: 0.65rem; flex-wrap: wrap">
+            <button class="btn btn-primary" type="submit">Simpan draf</button>
+            <a class="btn btn-secondary" href="my-courses.html">Batal</a>
+          </div>
+        </form>
+      </main>
+    </div>
+    <div id="site-footer"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/render.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>
