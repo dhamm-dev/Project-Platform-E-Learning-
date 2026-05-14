@@ -131,7 +131,6 @@ Gunakan referensi ini sebagai panduan saat menghubungkan logika JS ke halaman HT
 | *Hardcode* array dinamis di dalam *file* halaman JS/HTML | **Panggil fungsi baca dari `db.js` untuk menarik data dari `localStorage**` |
 | Mencampur seluruh *layout* HTML dalam satu file panjang | **Pisahkan elemen ke `components/` untuk di-include** |
 | Menambahkan warna *hardcode* pada HTML | **Gunakan variabel warna CSS dari root `globals.css**` |
-
 ```
 
 ```

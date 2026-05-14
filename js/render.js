@@ -46,6 +46,45 @@ async function initAdminShell() {
   await injectIntoSelector("#site-footer", COMPONENT_BASE + "footer-admin.html");
 }
 
+/**
+ * Mengisi katalog siswa dari localStorage lewat getAll("courses").
+ * ID dan harga dipaksa ke number untuk query string & formatRupiah tanpa mencampur tipe.
+ */
+function renderCatalog() {
+  if (typeof getAll !== "function") {
+    return;
+  }
+  const container = document.getElementById("course-container");
+  if (!container) {
+    return;
+  }
+  const rows = getAll("courses");
+  const cards = [];
+  let i = 0;
+  while (i < rows.length) {
+    const row = rows[i];
+    const idNum = Number(row.id);
+    const priceNum = Number(row.price);
+    const titleStr = typeof row.title === "string" ? row.title : "";
+    const badgeStr = typeof row.badge === "string" ? row.badge : "";
+    let metaStr = "Kelas";
+    if (typeof row.moduleMeta === "string" && row.moduleMeta.length > 0) {
+      metaStr = row.moduleMeta;
+    }
+    const idForQuery = encodeURIComponent(String(idNum));
+    const hrefStr = "course-detail.html?id=" + idForQuery;
+    cards.push({
+      title: titleStr,
+      meta: metaStr,
+      price: priceNum,
+      badge: badgeStr,
+      href: hrefStr,
+    });
+    i += 1;
+  }
+  renderCourseCards("course-container", cards);
+}
+
 function renderCourseCards(containerId, courses) {
   const container = document.getElementById(containerId);
   if (!container || !Array.isArray(courses)) {
@@ -633,6 +672,162 @@ function renderAdminAccountRows(containerId, rows) {
     i += 1;
   }
   container.innerHTML = htmlString;
+}
+
+/**
+ * Ruang belajar: playlist modul per courseId dari localStorage, pemutar placeholder.
+ * Loop render memakai while dan inkrementasi i += 1 (SKILL.md).
+ */
+function renderLearningRoom(courseId) {
+  if (typeof getAll !== "function") {
+    return;
+  }
+  const mainHost = document.getElementById("main-video-container");
+  const playlistHost = document.getElementById("playlist-container");
+  const courseLabelEl = document.getElementById("learning-room-course-label");
+  const metaTitleEl = document.getElementById("learning-room-meta-title");
+  const metaSummaryEl = document.getElementById("learning-room-meta-summary");
+  if (!mainHost || !playlistHost) {
+    return;
+  }
+
+  const targetCourseId = Number(courseId);
+  if (typeof getById === "function" && courseLabelEl) {
+    const courseRow = getById("courses", targetCourseId);
+    if (courseRow && typeof courseRow.title === "string") {
+      courseLabelEl.textContent = courseRow.title;
+    }
+  }
+
+  const allModules = getAll("modules");
+  const forCourse = [];
+  let j = 0;
+  while (j < allModules.length) {
+    const row = allModules[j];
+    if (Number(row.courseId) === targetCourseId) {
+      forCourse.push(row);
+    }
+    j += 1;
+  }
+
+  let swapped = true;
+  while (swapped) {
+    swapped = false;
+    let s = 0;
+    while (s < forCourse.length - 1) {
+      if (Number(forCourse[s].order) > Number(forCourse[s + 1].order)) {
+        const tmp = forCourse[s];
+        forCourse[s] = forCourse[s + 1];
+        forCourse[s + 1] = tmp;
+        swapped = true;
+      }
+      s += 1;
+    }
+  }
+
+  playlistHost.innerHTML = "";
+  const ul = document.createElement("ul");
+  ul.className = "module-list";
+
+  function paintMainArea(mod) {
+    mainHost.textContent = "";
+    const inner = document.createElement("div");
+    inner.className = "learning-video-inner";
+    const lab = document.createElement("p");
+    lab.className = "learning-video-label";
+    lab.textContent = "Sedang diputar (simulasi)";
+    const titleEl = document.createElement("p");
+    titleEl.className = "learning-video-title";
+    titleEl.textContent = typeof mod.title === "string" ? mod.title : "";
+    const metaEl = document.createElement("p");
+    metaEl.className = "learning-video-meta";
+    const typeStr = typeof mod.type === "string" ? mod.type : "";
+    const durStr = typeof mod.durationLabel === "string" ? mod.durationLabel : "";
+    metaEl.textContent = typeStr + " · " + durStr;
+    inner.appendChild(lab);
+    inner.appendChild(titleEl);
+    inner.appendChild(metaEl);
+    mainHost.appendChild(inner);
+    if (metaTitleEl) {
+      metaTitleEl.textContent =
+        "Modul " + String(mod.order) + " · " + (typeof mod.title === "string" ? mod.title : "");
+    }
+    if (metaSummaryEl) {
+      metaSummaryEl.textContent =
+        "Jenis materi: " + typeStr + ". Durasi perkiraan: " + durStr + ".";
+    }
+  }
+
+  function setActiveIndex(activeIndex) {
+    const buttons = ul.querySelectorAll(".learning-playlist-item");
+    let b = 0;
+    while (b < buttons.length) {
+      const btn = buttons[b];
+      const idx = Number(btn.getAttribute("data-module-index"));
+      if (idx === activeIndex) {
+        btn.classList.add("is-active");
+      } else {
+        btn.classList.remove("is-active");
+      }
+      b += 1;
+    }
+    if (activeIndex >= 0 && activeIndex < forCourse.length) {
+      paintMainArea(forCourse[activeIndex]);
+    }
+  }
+
+  if (forCourse.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "muted";
+    empty.style.margin = "0";
+    empty.textContent = "Belum ada modul untuk kelas ini.";
+    playlistHost.appendChild(empty);
+    mainHost.textContent = "";
+    const ph = document.createElement("span");
+    ph.className = "learning-video-empty";
+    ph.textContent = "Tidak ada materi video";
+    mainHost.appendChild(ph);
+    if (metaTitleEl) {
+      metaTitleEl.textContent = "Tidak ada modul";
+    }
+    if (metaSummaryEl) {
+      metaSummaryEl.textContent = "Silakan kembali nanti atau hubungi instruktur.";
+    }
+    return;
+  }
+
+  let i = 0;
+  while (i < forCourse.length) {
+    const mod = forCourse[i];
+    const idx = i;
+    const li = document.createElement("li");
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "learning-playlist-item";
+    btn.setAttribute("data-module-index", String(i));
+    const orderNum = Number(mod.order);
+    const titleStr = typeof mod.title === "string" ? mod.title : "";
+    const typeStr = typeof mod.type === "string" ? mod.type : "";
+    const durStr = typeof mod.durationLabel === "string" ? mod.durationLabel : "";
+    const titleSpan = document.createElement("span");
+    titleSpan.textContent = String(orderNum) + ". " + titleStr;
+    const metaSpan = document.createElement("span");
+    metaSpan.className = "muted";
+    metaSpan.style.fontSize = "0.8rem";
+    metaSpan.style.flexShrink = "0";
+    metaSpan.textContent = typeStr + " · " + durStr;
+    btn.appendChild(titleSpan);
+    btn.appendChild(metaSpan);
+    btn.addEventListener("click", function () {
+      setActiveIndex(idx);
+    });
+    li.appendChild(btn);
+    ul.appendChild(li);
+    i += 1;
+  }
+
+  playlistHost.appendChild(ul);
+  setActiveIndex(0);
 }
 
 function wireFaqAccordion(containerId) {

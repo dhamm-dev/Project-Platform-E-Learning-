@@ -1,9 +1,39 @@
+function buildFeaturedCourseCardsForLanding() {
+  if (typeof getAll !== "function") {
+    return [];
+  }
+  const courses = getAll("courses");
+  const out = [];
+  let i = 0;
+  while (i < courses.length) {
+    const c = courses[i];
+    if (c && c.featured === true && c.status === "published") {
+      const meta =
+        typeof c.moduleMeta === "string" && c.moduleMeta.length > 0 ? c.moduleMeta : "Kelas pilihan";
+      out.push({
+        title: c.title,
+        meta: meta,
+        price: c.price,
+        badge: c.badge,
+        href: "../student/course-detail.html?id=" + encodeURIComponent(String(c.id)),
+      });
+    }
+    i += 1;
+  }
+  return out;
+}
+
 function initLandingDemoCourses() {
   const el = document.getElementById("landing-course-grid");
   if (!el) {
     return;
   }
-  const demoCourses = [
+  const cards = buildFeaturedCourseCardsForLanding();
+  if (cards.length > 0) {
+    renderCourseCards("landing-course-grid", cards);
+    return;
+  }
+  renderCourseCards("landing-course-grid", [
     {
       title: "Dasar Pemrograman Web",
       meta: "12 modul",
@@ -22,8 +52,7 @@ function initLandingDemoCourses() {
       price: 299000,
       badge: "Unggulan",
     },
-  ];
-  renderCourseCards("landing-course-grid", demoCourses);
+  ]);
 }
 
 function initFaqPage() {
@@ -245,11 +274,15 @@ function getDemoStudentCourses() {
 }
 
 function initStudentCatalog() {
-  const el = document.getElementById("student-catalog-grid");
+  const el = document.getElementById("course-container");
   if (!el) {
     return;
   }
-  renderCourseCards("student-catalog-grid", getDemoStudentCourses());
+  if (typeof renderCatalog === "function") {
+    renderCatalog();
+    return;
+  }
+  renderCourseCards("course-container", getDemoStudentCourses());
 }
 
 function initStudentWishlist() {
@@ -269,12 +302,33 @@ function initStudentDashboardCourses() {
   }
   const all = getDemoStudentCourses();
   const subset = [all[0], all[1]];
+  const courseIds = [1, 2];
   let i = 0;
   while (i < subset.length) {
-    subset[i].href = "learning-room.html";
+    const cid = courseIds[i] !== undefined ? courseIds[i] : 1;
+    subset[i].href = "learning-room.html?courseId=" + encodeURIComponent(String(cid));
     i += 1;
   }
   renderCourseCards("student-continue-grid", subset);
+}
+
+function initStudentLearningRoom() {
+  const playlistHost = document.getElementById("playlist-container");
+  if (!playlistHost) {
+    return;
+  }
+  const params = new URLSearchParams(window.location.search);
+  const raw = params.get("courseId");
+  let courseId = 1;
+  if (raw !== null && raw !== "") {
+    const n = Number(raw);
+    if (!Number.isNaN(n)) {
+      courseId = n;
+    }
+  }
+  if (typeof renderLearningRoom === "function") {
+    renderLearningRoom(courseId);
+  }
 }
 
 function initStudentNotifications() {
@@ -1056,6 +1110,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   initStudentCatalog();
   initStudentWishlist();
   initStudentDashboardCourses();
+  initStudentLearningRoom();
   initStudentNotifications();
   initStudentTransactions();
   initInstructorDashboard();

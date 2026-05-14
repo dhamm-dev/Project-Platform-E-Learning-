@@ -579,6 +579,81 @@
   border-bottom: none;
 }
 
+.learning-playlist-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--color-text-dark);
+  text-align: left;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.12s ease;
+}
+
+.learning-playlist-item:hover {
+  color: var(--color-primary);
+}
+
+.learning-playlist-item:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.learning-playlist-item.is-active {
+  color: var(--color-primary);
+  font-weight: 600;
+  background: var(--color-primary-soft);
+  padding-left: 0.65rem;
+  padding-right: 0.65rem;
+  margin-left: -0.65rem;
+  margin-right: -0.65rem;
+}
+
+.learning-playlist-item:active {
+  transform: scale(0.99);
+}
+
+.learning-video-inner {
+  text-align: center;
+  padding: 1rem 1.25rem;
+  max-width: 28rem;
+}
+
+.learning-video-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.learning-video-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  line-height: 1.35;
+}
+
+.learning-video-meta {
+  margin: 0.5rem 0 0;
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+
+.learning-video-empty {
+  color: var(--color-text-body);
+  opacity: 0.85;
+}
+
 .quiz-option {
   display: flex;
   align-items: flex-start;
