@@ -19,12 +19,12 @@
           <form id="form-register-student" novalidate>
             <div class="form-group">
               <label class="form-label" for="reg-s-name">Nama lengkap</label>
-              <input class="form-control" type="text" id="reg-s-name" name="name" autocomplete="name" required />
+              <input class="form-control" type="text" id="reg-s-name" name="name" autocomplete="name" required placeholder="Nama Lengkap" />
               <p class="form-error" role="alert"></p>
             </div>
             <div class="form-group">
               <label class="form-label" for="reg-s-email">Email</label>
-              <input class="form-control" type="email" id="reg-s-email" name="email" autocomplete="email" required />
+              <input class="form-control" type="email" id="reg-s-email" name="email" autocomplete="email" required placeholder="Email" />
               <p class="form-error" role="alert"></p>
             </div>
             <div class="form-group">
@@ -35,6 +35,7 @@
                 id="reg-s-password"
                 name="password"
                 autocomplete="new-password"
+                placeholder="*********"
                 required
               />
               <p class="form-hint">Minimal 8 karakter.</p>
